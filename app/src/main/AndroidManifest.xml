@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.satcat.kalys">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:name="com.satcat.kalys.KalysApplication"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
+        tools:ignore="GoogleAppIndexingWarning">
+
+        <activity android:name="com.satcat.kalys.NavigationActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.satcat.kalys.SignupLogin.WelcomeActivity"
+            android:label="@string/title_activity_active_group"
+            android:theme="@style/AppTheme"
+            tools:targetApi="jelly_bean" />
+        <activity
+            android:name="com.satcat.kalys.SignupLogin.LoginActivity"
+            android:label="@string/title_activity_active_group"
+            android:parentActivityName="com.satcat.kalys.SignupLogin.WelcomeActivity"
+            android:theme="@style/AppTheme"
+            tools:targetApi="jelly_bean" />
+        <activity
+            android:name="com.satcat.kalys.SignupLogin.SignupNameActivity"
+            android:label="@string/title_activity_active_group"
+            android:parentActivityName="com.satcat.kalys.SignupLogin.WelcomeActivity"
+            android:theme="@style/AppTheme"
+            tools:targetApi="jelly_bean" />
+        <activity
+            android:name="com.satcat.kalys.SignupLogin.SignupAccountActivity"
+            android:label="@string/title_activity_active_group"
+            android:parentActivityName="com.satcat.kalys.SignupLogin.SignupNameActivity"
+            android:theme="@style/AppTheme"
+            tools:targetApi="jelly_bean" />
+        <activity
+            android:name="com.satcat.kalys.SignupLogin.SignupVerifyActivity"
+            android:label="@string/title_activity_active_group"
+            android:parentActivityName="com.satcat.kalys.SignupLogin.SignupAccountActivity"
+            android:theme="@style/AppTheme"
+            tools:targetApi="jelly_bean" />
+        <activity
+            android:name="com.satcat.kalys.SignupLogin.SignupImageActivity"
+            android:label="@string/title_activity_active_group"
+            android:parentActivityName="com.satcat.kalys.SignupLogin.SignupVerifyActivity"
+            android:theme="@style/AppTheme"
+            tools:targetApi="jelly_bean" />
+        <activity
+            android:name="com.satcat.kalys.CreateChannelActivity"
+            android:label="@string/title_activity_active_group"
+            android:parentActivityName="com.satcat.kalys.GroupTabActivity"
+            android:theme="@style/AppTheme"
+            tools:targetApi="jelly_bean" />
+        <activity
+            android:name="com.satcat.kalys.CreateGroupActivity"
+            android:label="@string/title_activity_active_group"
+            android:parentActivityName="com.satcat.kalys.StartTabActivity"
+            android:theme="@style/AppTheme"
+            tools:targetApi="jelly_bean" />
+        <activity
+            android:name="com.satcat.kalys.OptionsChannelActivity"
+            android:label="@string/title_activity_active_group"
+            android:parentActivityName="com.satcat.kalys.GroupTabActivity"
+            android:theme="@style/AppTheme"
+            tools:targetApi="jelly_bean" />
+        <activity
+            android:name="com.satcat.kalys.OptionsGroupActivity"
+            android:label="@string/title_activity_active_group"
+            android:parentActivityName="com.satcat.kalys.GroupTabActivity"
+            android:theme="@style/AppTheme"
+            tools:targetApi="jelly_bean" />
+        <activity
+            android:name="com.satcat.kalys.JoinGroupActivity"
+            android:label="@string/title_activity_active_group"
+            android:parentActivityName="com.satcat.kalys.StartTabActivity"
+            android:theme="@style/AppTheme"
+            tools:targetApi="jelly_bean" />
+        <activity
+            android:name="com.satcat.kalys.AddMembersActivity"
+            android:label="@string/title_activity_active_group"
+            android:theme="@style/AppTheme"
+            tools:targetApi="jelly_bean" />
+        <activity
+            android:name="com.satcat.kalys.SettingsActivity"
+            android:label="@string/title_activity_active_group"
+            android:parentActivityName="com.satcat.kalys.StartTabActivity"
+            android:theme="@style/AppTheme"
+            tools:targetApi="jelly_bean" />
+        <activity
+            android:name="com.satcat.kalys.GroupTabActivity"
+            android:label="@string/title_activity_active_group"
+            android:parentActivityName="com.satcat.kalys.StartTabActivity"
+            android:theme="@style/AppTheme"
+            tools:targetApi="jelly_bean" />
+        <activity
+            android:name="com.satcat.kalys.StartTabActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme">
+        </activity>
+    </application>
+
+
+</manifest>

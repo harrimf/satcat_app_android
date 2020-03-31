@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="100dp"
+        android:id="@+id/recycler_add_members"
+        android:layout_alignParentBottom="true"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Search Users"
+        android:layout_marginTop="50dp"
+        android:id="@+id/add_members_search_field"/>
+
+    <Button
+        android:id="@+id/add_members_add_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Members"
+        android:background="#fc241c"
+        android:textColor="#fff"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="16dp"/>
+
+    <Button
+        android:id="@+id/add_members_add_btn_direct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Members Direct"
+        android:background="#fc241c"
+        android:textColor="#fff"
+        android:visibility="invisible"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="70dp"/>
+
+</RelativeLayout>

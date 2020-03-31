@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ActiveChannelFragment">
+
+    <ImageView
+        android:id="@+id/active_channel_open_notice"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="64dp"
+        android:clickable="true"
+        android:src="@drawable/ic_launcher_background"/>
+
+    <TextView
+        android:id="@+id/active_channel_new_notice_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Notice •"
+        android:fontFamily="sans-serif"
+        android:layout_toLeftOf="@+id/active_channel_open_notice"
+        android:layout_marginTop="64dp"
+        android:layout_marginRight="5dp"
+        android:textColor="#fc241c"
+        android:textSize="12sp"/>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:id="@+id/recycler_messages"
+        android:layout_below="@+id/active_channel_open_notice"
+        android:layout_marginTop="5dp"
+        />
+
+    <EditText
+        android:id="@+id/active_channel_message_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFF"
+        android:hint="Chat in"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="70dp"
+        android:visibility="visible" />
+
+    <Button
+        android:id="@+id/active_channel_settings_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Channel Settings"
+        android:stateListAnimator="@null"
+        android:background="#fc241c"
+        android:textColor="#fff"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_margin="16dp"/>
+
+    <Button
+        android:id="@+id/active_channel_send_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Send"
+        android:stateListAnimator="@null"
+        android:background="#fc241c"
+        android:textColor="#fff"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="16dp"/>
+
+    <Button
+        android:id="@+id/active_channel_switch_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Switch"
+        android:stateListAnimator="@null"
+        android:background="#fc241c"
+        android:textColor="#fff"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="16dp"/>
+
+    <RelativeLayout
+        android:id="@+id/active_channel_notice_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:alpha="0.85"
+        android:background="#000000"
+        android:visibility="invisible"
+        android:clickable="true"
+        android:layout_marginTop="64dp"
+        android:layout_alignParentTop="true">
+
+        <TextView
+            android:id="@+id/active_channel_notice_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Notice"
+            android:fontFamily="sans-serif"
+            android:textStyle="bold"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="20dp"
+            android:textColor="#FFF"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/active_channel_notice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Notice"
+            android:fontFamily="sans-serif"
+            android:layout_marginTop="60dp"
+            android:layout_centerHorizontal="true"
+            android:textColor="#FFF"
+            android:clickable="true"
+            android:textAlignment="center"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/active_channel_notice_tap_to_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tap to edit"
+            android:fontFamily="sans-serif"
+            android:layout_below="@+id/active_channel_notice"
+            android:layout_centerHorizontal="true"
+            android:textColor="#FFF"
+            android:textSize="12sp"/>
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/active_channel_notice_sender_img"
+            android:layout_below="@+id/active_channel_notice_tap_to_edit"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/ic_launcher_background"
+            android:clickable="true"/>
+
+        <TextView
+            android:id="@+id/active_channel_notice_sender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Notice Sender"
+            android:fontFamily="sans-serif"
+            android:textStyle="bold"
+            android:layout_below="@+id/active_channel_notice_tap_to_edit"
+            android:layout_toRightOf="@+id/active_channel_notice_sender_img"
+            android:layout_marginLeft="10dp"
+            android:textColor="#FFF"
+            android:textSize="16sp"/>
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/active_channel_close_img"
+            android:layout_below="@+id/active_channel_notice_sender_img"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ic_launcher_background"
+            android:layout_margin="7dp" />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/active_channel_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.85"
+        android:background="#000000"
+        android:visibility="invisible"
+        android:clickable="true"/>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_switch_channels"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="166dp"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/active_channel_hide_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hide Switch Channel"
+        android:background="#fc241c"
+        android:textColor="#fff"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:visibility="invisible"
+        android:layout_margin="16dp"/>
+
+    <TextView
+        android:id="@+id/active_channel_update_notice_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update the notice for test"
+        android:fontFamily="sans-serif"
+        android:textStyle="bold"
+        android:layout_marginTop="70dp"
+        android:textColor="#FFF"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"
+        android:textSize="20sp"/>
+
+    <EditText
+        android:id="@+id/active_channel_update_notice_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFF"
+        android:text="Notice"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="120dp"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/active_channel_update_cancel_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        android:background="@android:color/transparent"
+        android:textColor="#fff"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_margin="16dp"
+        android:visibility="invisible"/>
+
+
+    <Button
+        android:id="@+id/active_channel_update_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update"
+        android:background="@android:color/transparent"
+        android:textColor="#fff"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="16dp"
+        android:visibility="invisible"/>
+
+</RelativeLayout>

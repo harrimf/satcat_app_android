@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ActiveGroupFragment">
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_marginTop="64dp"
+        android:id="@+id/recycler_notices"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_marginTop="300dp"
+        android:id="@+id/recycler_channels"/>
+
+        <Button
+            android:id="@+id/leave_group_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Leave Group"
+            android:stateListAnimator="@null"
+            android:background="#fc241c"
+            android:textColor="#fff"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="16dp"/>
+
+        <Button
+            android:id="@+id/settings_group_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Group Settings"
+            android:stateListAnimator="@null"
+            android:background="#fc241c"
+            android:textColor="#fff"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="16dp"/>
+
+        <Button
+            android:id="@+id/create_channel_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Channel"
+            android:stateListAnimator="@null"
+            android:background="#fc241c"
+            android:textColor="#fff"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="16dp"/>
+
+    <View
+        android:id="@+id/active_group_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.85"
+        android:background="#000000"
+        android:visibility="invisible"
+        android:clickable="true"/>
+
+    <TextView
+        android:id="@+id/active_group_join_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Join Test"
+        android:fontFamily="sans-serif"
+        android:textStyle="bold"
+        android:layout_marginTop="70dp"
+        android:textColor="#FFF"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/active_group_join_notice_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Test Notice"
+        android:fontFamily="sans-serif"
+        android:textStyle="bold"
+        android:layout_marginTop="150dp"
+        android:textColor="#FFF"
+        android:layout_alignParentLeft="true"
+        android:visibility="invisible"
+        android:textSize="15sp"/>
+
+
+    <TextView
+        android:id="@+id/active_group_join_notice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Notice"
+        android:fontFamily="sans-serif"
+        android:layout_marginTop="180dp"
+        android:textColor="#FFF"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"
+        android:textSize="15sp"/>
+
+
+    <TextView
+        android:id="@+id/active_group_join_members_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Test Members • 0"
+        android:fontFamily="sans-serif"
+        android:textStyle="bold"
+        android:layout_marginTop="240dp"
+        android:textColor="#FFF"
+        android:layout_alignParentLeft="true"
+        android:visibility="invisible"
+        android:textSize="15sp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/active_group_join_recycler_members"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_marginTop="260dp"
+        android:background="@android:color/transparent"
+        android:visibility="invisible"
+        />
+
+    <Button
+        android:id="@+id/active_group_join_cancel_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        android:background="@android:color/transparent"
+        android:textColor="#fff"
+        android:layout_marginTop="550dp"
+        android:layout_alignParentLeft="true"
+        android:visibility="invisible"/>
+
+    <Button
+        android:id="@+id/active_group_join_update_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update"
+        android:background="@android:color/transparent"
+        android:textColor="#fff"
+        android:layout_marginTop="550dp"
+        android:layout_alignParentRight="true"
+        android:visibility="invisible"/>
+
+</RelativeLayout>

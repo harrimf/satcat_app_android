@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Group Name"
+        android:layout_marginTop="50dp"
+        android:id="@+id/create_group_name_field"/>
+
+    <TextView
+        android:id="@+id/create_group_name_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Give your group a name"
+        android:fontFamily="sans-serif"
+        android:layout_marginTop="90dp"
+        android:textSize="12sp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Group Notice (Optional)"
+        android:layout_marginTop="110dp"
+        android:id="@+id/create_group_notice_field"/>
+
+    <TextView
+        android:id="@+id/create_group_notice_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add a notice that will be visible to all members of the group"
+        android:fontFamily="sans-serif"
+        android:layout_marginTop="155dp"
+        android:textSize="12sp"/>
+
+    <Switch
+        android:id="@+id/create_group_visibility_switch"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="255dp"
+        android:layout_alignParentRight="true"
+        android:checked="true"
+        />
+
+    <TextView
+        android:id="@+id/create_group_visibility_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Public"
+        android:fontFamily="sans-serif"
+        android:layout_marginTop="255dp"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:id="@+id/create_group_visibility_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Group Visibility • Everyone"
+        android:fontFamily="sans-serif"
+        android:layout_marginTop="275dp"
+        android:textSize="12sp"/>
+
+    <TextView
+        android:id="@+id/create_group_members_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Members • 0"
+        android:fontFamily="sans-serif"
+        android:layout_marginTop="400dp"
+        android:textSize="12sp"/>
+
+    <TextView
+        android:id="@+id/create_group_members_remove_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tap user to remove"
+        android:fontFamily="sans-serif"
+        android:visibility="invisible"
+        android:layout_marginTop="420dp"
+        android:textSize="8sp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_marginTop="64dp"
+        android:id="@+id/recycler_create_users"
+        android:layout_alignParentBottom="true"
+        />
+
+    <Button
+        android:id="@+id/create_group_add_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Image"
+        android:background="#fc241c"
+        android:textColor="#fff"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_margin="16dp"/>
+
+    <Button
+        android:id="@+id/create_group_create_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create Group"
+        android:background="#fc241c"
+        android:textColor="#fff"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="16dp"/>
+
+    <Button
+        android:id="@+id/create_group_add_members_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Members"
+        android:background="#fc241c"
+        android:textColor="#fff"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="16dp"/>
+</RelativeLayout>

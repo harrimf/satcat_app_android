@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/options_group_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Group Name"
+        android:layout_marginTop="50dp"/>
+
+    <TextView
+        android:id="@+id/options_group_title_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Group Title • Tap to edit"
+        android:fontFamily="sans-serif"
+        android:layout_marginTop="70dp"
+        android:textSize="12sp"/>
+    <RelativeLayout
+        android:id="@+id/options_group_title_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/options_group_title"
+        android:layout_alignBottom="@+id/options_group_title_info"
+        android:clickable="true"/>
+
+
+    <ImageButton
+        android:id="@+id/options_group_image"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="100dp"
+        android:layout_alignParentRight="true"
+        />
+
+    <TextView
+        android:id="@+id/options_group_image_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Group Image"
+        android:layout_marginTop="100dp" />
+
+    <TextView
+        android:id="@+id/options_group_image_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Group Image • Tap to edit"
+        android:fontFamily="sans-serif"
+        android:layout_marginTop="120dp"
+        android:textSize="12sp"/>
+
+    <RelativeLayout
+        android:id="@+id/options_group_image_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/options_group_image_name"
+        android:layout_alignBottom="@+id/options_group_image"
+        android:clickable="true"/>
+
+
+    <Switch
+        android:id="@+id/options_group_visibility_switch"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="160dp"
+        android:layout_alignParentRight="true"
+        android:checked="true"
+        />
+
+    <TextView
+        android:id="@+id/options_group_visibility_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Public"
+        android:fontFamily="sans-serif"
+        android:layout_marginTop="160dp"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:id="@+id/options_group_visibility_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Group Visibility • Everyone"
+        android:fontFamily="sans-serif"
+        android:layout_marginTop="180dp"
+        android:textSize="12sp"/>
+
+    <Button
+        android:id="@+id/options_group_view_members_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Members"
+        android:background="#fc241c"
+        android:textColor="#fff"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:stateListAnimator="@null"
+        android:layout_margin="16dp"/>
+
+
+    <Button
+        android:id="@+id/options_group_add_members_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Members"
+        android:background="#fc241c"
+        android:textColor="#fff"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:stateListAnimator="@null"
+        android:layout_margin="16dp"/>
+
+    <View
+        android:id="@+id/options_group_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.85"
+        android:background="#000000"
+        android:visibility="invisible"
+        android:clickable="true"/>
+
+    <TextView
+        android:id="@+id/options_group_edit_title_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update the title of Test"
+        android:fontFamily="sans-serif"
+        android:textStyle="bold"
+        android:layout_marginTop="70dp"
+        android:textColor="#FFF"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"
+        android:textSize="20sp"/>
+
+    <EditText
+        android:id="@+id/options_group_edit_title_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFF"
+        android:hint="Test"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="120dp"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/options_group_edit_title_cancel_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        android:background="@android:color/transparent"
+        android:textColor="#fff"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_margin="16dp"
+        android:visibility="invisible"/>
+
+
+    <Button
+        android:id="@+id/options_group_edit_title_update_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update"
+        android:background="@android:color/transparent"
+        android:textColor="#fff"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="16dp"
+        android:visibility="invisible"/>
+
+
+    <TextView
+        android:id="@+id/options_group_edit_image_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update the group's image"
+        android:textColor="#fff"
+        android:fontFamily="sans-serif"
+        android:textStyle="bold"
+        android:layout_marginTop="70dp"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"
+        android:textSize="20sp"/>
+
+    <ImageButton
+        android:id="@+id/options_group_edit_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="200dp"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"
+        />
+
+    <TextView
+        android:id="@+id/options_group_edit_image_tap_to_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tap image to edit"
+        android:textColor="#fff"
+        android:fontFamily="sans-serif"
+        android:layout_marginTop="300dp"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"
+        android:textSize="12sp"/>
+
+
+    <Button
+        android:id="@+id/options_group_edit_image_cancel_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        android:background="@android:color/transparent"
+        android:textColor="#fff"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_margin="16dp"
+        android:visibility="invisible"/>
+
+
+    <Button
+        android:id="@+id/options_group_edit_image_update_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update"
+        android:background="@android:color/transparent"
+        android:textColor="#fff"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="16dp"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:id="@+id/options_group_view_members_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Test Members"
+        android:textColor="#fff"
+        android:fontFamily="sans-serif"
+        android:textStyle="bold"
+        android:layout_marginTop="70dp"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"
+        android:textSize="20sp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_options_group_view_members"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_marginTop="100dp"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/options_group_view_members_exit_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Exit"
+        android:background="@android:color/transparent"
+        android:textColor="#fff"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="16dp"
+        android:visibility="invisible"/>
+
+</RelativeLayout>

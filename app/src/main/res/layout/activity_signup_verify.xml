@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/signup_verify_detail_lbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Let's secure your account"
+        android:fontFamily="@font/montserrat_regular"
+        android:textColor="@color/textGray"
+        android:textSize="14sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        android:layout_marginTop="40dp" />
+
+    <EditText
+        android:id="@+id/signup_verify_email_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/textGray"
+        android:background="@android:color/transparent"
+        android:fontFamily="@font/montserrat_medium"
+        app:layout_constraintTop_toBottomOf="@+id/signup_verify_detail_lbl"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="40dp"
+        />
+
+
+
+    <com.hbb20.CountryCodePicker
+        android:id="@+id/signup_verify_phone_country_field"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:ccp_hintExampleNumber="true"
+        app:ccp_autoDetectCountry="true"
+        app:ccp_clickable="true"
+        android:textColor="@color/textGray"
+        android:background="@android:color/transparent"
+        android:fontFamily="@font/montserrat_medium"
+        app:layout_constraintTop_toBottomOf="@+id/signup_verify_email_field"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="40dp"/>
+
+    <EditText
+        android:id="@+id/signup_verify_phone_field"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Phone number"
+        android:inputType="phone"
+        android:textColor="@color/textGray"
+        android:background="@android:color/transparent"
+        android:fontFamily="@font/montserrat_medium"
+        android:visibility="visible"
+        app:layout_constraintTop_toTopOf="@+id/signup_verify_phone_country_field"
+        app:layout_constraintBottom_toBottomOf="@+id/signup_verify_phone_country_field"
+        app:layout_constraintVertical_chainStyle="spread"
+        app:layout_constraintLeft_toRightOf="@id/signup_verify_phone_country_field"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp" />
+
+    <EditText
+        android:id="@+id/signup_verify_code_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Verification code"
+        android:textColor="@color/textGray"
+        android:background="@android:color/transparent"
+        android:fontFamily="@font/montserrat_medium"
+        app:layout_constraintTop_toBottomOf="@+id/signup_verify_phone_field"
+        android:visibility="invisible"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="40dp"/>
+
+
+    <View
+        android:id="@+id/signup_verify_divider"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/redDivider"
+        android:alpha="0.2"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <Button
+        android:id="@+id/signup_verify_continue_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/continue_signup_name"
+        style="?android:attr/borderlessButtonStyle"
+        app:layout_constraintTop_toTopOf="@+id/signup_verify_divider"
+        app:layout_constraintBottom_toBottomOf="@+id/signup_verify_divider"
+        app:layout_constraintLeft_toLeftOf="@+id/signup_verify_divider"
+        app:layout_constraintRight_toRightOf="@+id/signup_verify_divider"
+        app:layout_constraintVertical_chainStyle="spread"
+        app:layout_constraintHorizontal_chainStyle="spread" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

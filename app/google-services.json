@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "340608293772",
+    "firebase_url": "https://kalys-adcc7.firebaseio.com",
+    "project_id": "kalys-adcc7",
+    "storage_bucket": "kalys-adcc7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:340608293772:android:b0ebccec932230600094a9",
+        "android_client_info": {
+          "package_name": "com.satcat.kalys"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "340608293772-l7srs34eib0vggmfoi3p8hbbmbku1cv5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDItOnQcZIOxQhLNdZvJf1Di05Ch5Edok0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "340608293772-l7srs34eib0vggmfoi3p8hbbmbku1cv5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

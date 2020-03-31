@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/welcome_detail_lbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome to:"
+        android:fontFamily="@font/montserrat_regular"
+        android:textColor="@color/textGray"
+        android:textSize="24sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        android:layout_marginTop="60dp" />
+
+    <TextView
+        android:id="@+id/welcome_kalys_lbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kalys"
+        android:fontFamily="@font/montserrat_bold"
+        android:textColor="@color/textGray"
+        android:textSize="36sp"
+        app:layout_constraintTop_toBottomOf="@id/welcome_detail_lbl"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        android:layout_marginTop="8dp" />
+
+    <TextView
+        android:id="@+id/welcome_binding_lbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Binding communities"
+        android:fontFamily="@font/montserrat_bold"
+        android:textColor="@color/placeholderGray"
+        android:alpha="0.22"
+        android:textSize="22sp"
+        app:layout_constraintTop_toBottomOf="@id/welcome_kalys_lbl"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        android:layout_marginTop="80dp" />
+
+    <View
+        android:id="@+id/welcome_divider"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/redDivider"
+        android:alpha="0.2"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <Button
+        android:id="@+id/welcome_login_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/login_welcome"
+        style="?android:attr/borderlessButtonStyle"
+        app:layout_constraintTop_toTopOf="@+id/welcome_divider"
+        app:layout_constraintBottom_toBottomOf="@+id/welcome_divider"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/welcome_register_btn"
+        app:layout_constraintVertical_chainStyle="spread"
+        app:layout_constraintHorizontal_chainStyle="spread" />
+
+    <Button
+        android:id="@+id/welcome_register_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/sign_up_welcome"
+        style="?android:attr/borderlessButtonStyle"
+        app:layout_constraintTop_toTopOf="@+id/welcome_divider"
+        app:layout_constraintBottom_toBottomOf="@+id/welcome_divider"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/welcome_login_btn"
+        app:layout_constraintVertical_chainStyle="spread"
+        app:layout_constraintHorizontal_chainStyle="spread" />
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

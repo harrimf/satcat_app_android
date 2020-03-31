@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".StartTabActivity">
+
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <View
+        android:id="@+id/nav_divider"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/redDivider"
+        android:alpha="0.2"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <Button
+        android:id="@+id/nav_join_group_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/join_group"
+        style="?android:attr/borderlessButtonStyle"
+        app:layout_constraintTop_toTopOf="@+id/nav_divider"
+        app:layout_constraintBottom_toBottomOf="@+id/nav_divider"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/nav_create_group_btn"
+        app:layout_constraintVertical_chainStyle="spread"
+        app:layout_constraintHorizontal_chainStyle="spread" />
+
+    <Button
+        android:id="@+id/nav_create_group_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/new_group"
+        style="?android:attr/borderlessButtonStyle"
+        app:layout_constraintTop_toTopOf="@+id/nav_divider"
+        app:layout_constraintBottom_toBottomOf="@+id/nav_divider"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/nav_join_group_btn"
+        app:layout_constraintVertical_chainStyle="spread"
+        app:layout_constraintHorizontal_chainStyle="spread" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
