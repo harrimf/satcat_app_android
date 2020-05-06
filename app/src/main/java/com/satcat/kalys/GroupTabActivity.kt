@@ -22,6 +22,8 @@ class GroupTabActivity : AppCompatActivity() {
     lateinit var sectionsPagerAdapter: GroupSectionsPagerAdapter
 
     private lateinit var realm: Realm
+    
+    var resumeFragmentActive = true
 
 
 
@@ -48,15 +50,24 @@ class GroupTabActivity : AppCompatActivity() {
             }
 
             override fun onPageSelected(position: Int) {
+
+                supportActionBar!!.title = sectionsPagerAdapter.getPageTitle(position)
+
+
                 if(position == 0) {
                     showGroupIsActive = true// Check if this is the page you want.
+                    supportActionBar!!.title = activeGroup.Title
                     sectionsPagerAdapter.activeGroupFragment.fragmentIsActive()
-
                     sectionsPagerAdapter.activeChannelFragment.closeNotice()
 
                 } else if (position == 1) {
                     showGroupIsActive = false
-                    sectionsPagerAdapter.activeChannelFragment.fragmentIsActive()
+                    supportActionBar!!.title = activeChannel.Title
+                    if(resumeFragmentActive) {
+                        sectionsPagerAdapter.activeChannelFragment.fragmentIsActive()
+                    } else {
+                        resumeFragmentActive = true
+                    }
                 }
             }
         })
@@ -76,6 +87,20 @@ class GroupTabActivity : AppCompatActivity() {
         activeChannel = channelQuery ?: activeGroup.Channels.first()!! //handles leaving channel
         fromChannelList = intent.getBooleanExtra("fromChannelList",  false)
         showGroupIsActive = intent.getBooleanExtra("showGroupIsActive", true)
+
+
+        if(fromChannelList && showGroupIsActive.not()) {
+            resumeFragmentActive = false
+            viewPager.setCurrentItem(1, false)
+
+        }
+
+        if(viewPager.currentItem == 0) {
+            supportActionBar!!.title = activeGroup.Title
+        } else if (viewPager.currentItem == 1) {
+            supportActionBar!!.title = activeChannel.Title
+        }
+
     }
 ;
 

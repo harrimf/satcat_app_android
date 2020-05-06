@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -12,131 +12,229 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="User Settings"
-        android:fontFamily="sans-serif"
-        android:textColor="@android:color/black"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:layout_margin="16dp"
-        android:layout_alignParentTop="true"/>
+        android:fontFamily="@font/montserrat_bold"
+        android:textColor="@color/textGray"
+        android:textSize="16sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"/>
 
     <TextView
         android:id="@+id/settings_username"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Ray"
-        android:layout_marginTop="60dp"/>
+        android:fontFamily="@font/montserrat_medium"
+        android:textColor="@color/textGray"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@+id/settings_section_label"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"/>
 
     <TextView
         android:id="@+id/settings_username_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Username"
-        android:fontFamily="sans-serif"
-        android:layout_marginTop="80dp"
-        android:textSize="12sp"/>
+        android:fontFamily="@font/montserrat_regular"
+        android:textColor="@color/placeholderGray"
+        android:alpha="0.22"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@+id/settings_username"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"/>
 
-    <RelativeLayout
+    <View
         android:id="@+id/settings_username_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/settings_username"
-        android:layout_alignBottom="@+id/settings_username_info"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@+id/settings_username"
+        app:layout_constraintBottom_toBottomOf="@id/settings_username_info"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         android:clickable="true"/>
 
     <TextView
         android:id="@+id/settings_firstname"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Jack"
-        android:layout_marginTop="110dp"/>
+        android:fontFamily="@font/montserrat_medium"
+        android:textColor="@color/textGray"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@+id/settings_username_info"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"/>
 
     <TextView
         android:id="@+id/settings_firstname_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="First name"
-        android:fontFamily="sans-serif"
-        android:layout_marginTop="130dp"
-        android:textSize="12sp"/>
+        android:fontFamily="@font/montserrat_regular"
+        android:textColor="@color/placeholderGray"
+        android:alpha="0.22"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@+id/settings_firstname"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"/>
 
-    <RelativeLayout
+    <View
         android:id="@+id/settings_firstname_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/settings_firstname"
-        android:layout_alignBottom="@+id/settings_firstname_info"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@+id/settings_firstname"
+        app:layout_constraintBottom_toBottomOf="@id/settings_firstname_info"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         android:clickable="true"/>
 
     <TextView
         android:id="@+id/settings_lastname"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Bigby"
-        android:layout_marginTop="160dp"/>
+        android:fontFamily="@font/montserrat_medium"
+        android:textColor="@color/textGray"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@+id/settings_firstname_info"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"/>
 
     <TextView
         android:id="@+id/settings_lastname_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Last name"
-        android:fontFamily="sans-serif"
-        android:layout_marginTop="180dp"
-        android:textSize="12sp"/>
+        android:fontFamily="@font/montserrat_regular"
+        android:textColor="@color/placeholderGray"
+        android:alpha="0.22"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@+id/settings_lastname"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"/>
 
-    <RelativeLayout
+    <View
         android:id="@+id/settings_lastname_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/settings_lastname"
-        android:layout_alignBottom="@+id/settings_lastname_info"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@+id/settings_lastname"
+        app:layout_constraintBottom_toBottomOf="@id/settings_lastname_info"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         android:clickable="true"/>
 
     <TextView
         android:id="@+id/settings_email"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="jack@gmail.com"
-        android:layout_marginTop="210dp"/>
+        android:fontFamily="@font/montserrat_medium"
+        android:textColor="@color/textGray"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@+id/settings_lastname_info"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"/>
 
     <TextView
         android:id="@+id/settings_email_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Email"
-        android:fontFamily="sans-serif"
-        android:layout_marginTop="230dp"
-        android:textSize="12sp"/>
+        android:fontFamily="@font/montserrat_regular"
+        android:textColor="@color/placeholderGray"
+        android:alpha="0.22"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@+id/settings_email"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"/>
 
-    <RelativeLayout
+    <View
         android:id="@+id/settings_email_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/settings_email"
-        android:layout_alignBottom="@+id/settings_email_info"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@+id/settings_email"
+        app:layout_constraintBottom_toBottomOf="@id/settings_email_info"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         android:clickable="true"/>
 
     <TextView
         android:id="@+id/settings_phonenumber"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Phone Number • Tap to Add"
-        android:layout_marginTop="260dp"/>
+        android:fontFamily="@font/montserrat_medium"
+        android:textColor="@color/textGray"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@+id/settings_email_info"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"/>
 
     <TextView
         android:id="@+id/settings_phonenumber_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Phone Number"
-        android:fontFamily="sans-serif"
-        android:layout_marginTop="280dp"
-        android:textSize="12sp"/>
+        android:fontFamily="@font/montserrat_regular"
+        android:textColor="@color/placeholderGray"
+        android:alpha="0.22"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@+id/settings_phonenumber"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"/>
 
-    <RelativeLayout
+    <View
         android:id="@+id/settings_phonenumber_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/settings_phonenumber"
-        android:layout_alignBottom="@+id/settings_phonenumber_info"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@+id/settings_phonenumber"
+        app:layout_constraintBottom_toBottomOf="@id/settings_phonenumber_info"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         android:clickable="true"/>
 
     <TextView
@@ -144,31 +242,65 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Ray Image"
-        android:layout_marginTop="310dp"/>
+        android:fontFamily="@font/montserrat_medium"
+        android:textColor="@color/textGray"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@+id/settings_phonenumber_info"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"/>
 
     <TextView
         android:id="@+id/settings_image_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="User Image"
-        android:fontFamily="sans-serif"
-        android:layout_marginTop="330dp"
-        android:textSize="12sp"/>
+        android:fontFamily="@font/montserrat_regular"
+        android:textColor="@color/placeholderGray"
+        android:alpha="0.22"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@+id/settings_image_txt"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"/>
 
-    <ImageButton
-        android:id="@+id/settings_image"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/settings_image_card"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginTop="310dp"
-        android:layout_alignParentRight="true"
-        />
+        android:orientation="vertical"
+        app:cardCornerRadius="25dp"
+        app:cardElevation="0dp"
+        app:layout_constraintTop_toTopOf="@+id/settings_image_txt"
+        app:layout_constraintBottom_toBottomOf="@id/settings_image_info"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        app:layout_constraintVertical_chainStyle="spread">
 
-    <RelativeLayout
+        <ImageView
+            android:id="@+id/settings_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop" />
+
+    </androidx.cardview.widget.CardView>
+
+    <View
         android:id="@+id/settings_image_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/settings_image_txt"
-        android:layout_alignBottom="@+id/settings_image"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@+id/settings_image_txt"
+        app:layout_constraintBottom_toBottomOf="@id/settings_image_info"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         android:clickable="true"/>
 
     <TextView
@@ -176,38 +308,68 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Password • Tap to edit"
-        android:layout_marginTop="360dp"/>
+        android:fontFamily="@font/montserrat_medium"
+        android:textColor="@color/textGray"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@+id/settings_image_info"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"/>
 
     <TextView
         android:id="@+id/settings_password_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Password"
-        android:fontFamily="sans-serif"
-        android:layout_marginTop="380dp"
-        android:textSize="12sp"/>
+        android:fontFamily="@font/montserrat_regular"
+        android:textColor="@color/placeholderGray"
+        android:alpha="0.22"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@+id/settings_password"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"/>
 
 
-    <RelativeLayout
+    <View
         android:id="@+id/settings_password_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/settings_password"
-        android:layout_alignBottom="@+id/settings_password_info"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@+id/settings_password"
+        app:layout_constraintBottom_toBottomOf="@id/settings_password_info"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         android:clickable="true"/>
+
+    <View
+        android:id="@+id/settings_divider"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/redDivider"
+        android:alpha="0.2"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 
     <Button
         android:id="@+id/settings_logout_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Log out"
-        android:stateListAnimator="@null"
-        android:background="#fc241c"
-        android:textColor="#fff"
-        android:layout_margin="16dp"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"/>
+        android:background="@drawable/log_out_settings"
+        style="?android:attr/borderlessButtonStyle"
+        app:layout_constraintTop_toTopOf="@+id/settings_divider"
+        app:layout_constraintBottom_toBottomOf="@id/settings_divider"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_chainStyle="spread"
+        />
 
 
     <View
@@ -216,247 +378,557 @@
         android:layout_height="match_parent"
         android:alpha="0.85"
         android:background="#000000"
-        android:visibility="invisible"
         android:clickable="true"
-        />
+        android:visibility="invisible"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
+    
+    <androidx.cardview.widget.CardView
+        android:id="@+id/settings_edit_username_info_bg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="0dp"
+        app:cardCornerRadius="30dp"
+        android:visibility="invisible"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp">
+        
 
     <TextView
         android:id="@+id/settings_edit_username_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Username"
-        android:fontFamily="sans-serif"
-        android:textStyle="bold"
-        android:layout_marginTop="70dp"
-        android:textColor="#FFF"
-        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/montserrat_bold"
+        android:textColor="@color/textGray"
         android:visibility="invisible"
-        android:textSize="20sp"/>
+        android:textSize="18sp"
+        app:layout_constraintTop_toTopOf="@id/settings_edit_username_info_bg"
+        app:layout_constraintLeft_toLeftOf="@id/settings_edit_username_info_bg"
+        app:layout_constraintRight_toRightOf="@id/settings_edit_username_info_bg"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintVertical_chainStyle="spread"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/settings_edit_username_field_bg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="0dp"
+        app:cardCornerRadius="30dp"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@id/settings_edit_username_info_bg"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp">
+
 
     <EditText
         android:id="@+id/settings_edit_username_field"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFF"
         android:hint="Ray"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="120dp"
+        android:textColorHint="@color/textGray"
+        android:fontFamily="@font/montserrat_regular"
+        android:textColor="@color/textGray"
+        android:visibility="invisible"
+        android:textSize="18sp"
         android:enabled="false"
-        android:visibility="invisible" />
+        android:alpha="0.5"
+        android:background="@android:color/transparent"
+        app:layout_constraintTop_toTopOf="@id/settings_edit_username_field_bg"
+        app:layout_constraintLeft_toLeftOf="@id/settings_edit_username_field_bg"
+        app:layout_constraintRight_toRightOf="@id/settings_edit_username_field_bg"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintVertical_chainStyle="spread"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"/>
+
+    </androidx.cardview.widget.CardView>
+
 
     <Button
         android:id="@+id/settings_edit_username_cancel_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cancel"
-        android:background="@android:color/transparent"
-        android:textColor="#fff"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_margin="16dp"
-        android:visibility="invisible"/>
+        android:visibility="invisible"
+        android:background="@drawable/cancel_settings_btn"
+        style="?android:attr/borderlessButtonStyle"
+        app:layout_constraintTop_toBottomOf="@id/settings_edit_username_field_bg"
+        app:layout_constraintLeft_toLeftOf="@id/settings_edit_username_field_bg"
+        app:layout_constraintStart_toStartOf="@id/settings_edit_username_field_bg"
+        android:layout_marginTop="60dp"/>
 
 
     <Button
         android:id="@+id/settings_edit_username_update_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Update"
-        android:background="@android:color/transparent"
-        android:textColor="#fff"
-        android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
         android:enabled="false"
-        android:layout_margin="16dp"
-        android:visibility="invisible"/>
-
-    <TextView
-        android:id="@+id/settings_edit_firstname_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Update your First Name"
-        android:fontFamily="sans-serif"
-        android:textStyle="bold"
-        android:layout_marginTop="70dp"
-        android:textColor="#FFF"
-        android:layout_centerHorizontal="true"
+        android:alpha="0.5"
         android:visibility="invisible"
-        android:textSize="20sp"/>
+        android:background="@drawable/update_settings_btn"
+        style="?android:attr/borderlessButtonStyle"
+        app:layout_constraintTop_toBottomOf="@id/settings_edit_username_field_bg"
+        app:layout_constraintRight_toRightOf="@id/settings_edit_username_field_bg"
+        app:layout_constraintEnd_toEndOf="@id/settings_edit_username_field_bg"
+        android:layout_marginTop="60dp"/>
 
-    <EditText
-        android:id="@+id/settings_edit_firstname_field"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/settings_edit_firstname_info_bg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFF"
-        android:hint="Jack"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="120dp"
-        android:visibility="invisible" />
+        app:cardElevation="0dp"
+        app:cardCornerRadius="30dp"
+        android:visibility="invisible"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp">
+
+        <TextView
+            android:id="@+id/settings_edit_firstname_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Update your First Name"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="@color/textGray"
+            android:visibility="invisible"
+            android:textSize="18sp"
+            app:layout_constraintTop_toTopOf="@id/settings_edit_firstname_info_bg"
+            app:layout_constraintLeft_toLeftOf="@id/settings_edit_firstname_info_bg"
+            app:layout_constraintRight_toRightOf="@id/settings_edit_firstname_info_bg"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintVertical_chainStyle="spread"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp" />
+        
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/settings_edit_firstname_field_bg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="0dp"
+        app:cardCornerRadius="30dp"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@id/settings_edit_firstname_info_bg"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp">
+
+        <EditText
+            android:id="@+id/settings_edit_firstname_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Jack"
+            android:textColorHint="@color/textGray"
+            android:fontFamily="@font/montserrat_regular"
+            android:textColor="@color/textGray"
+            android:visibility="invisible"
+            android:textSize="18sp"
+            android:background="@android:color/transparent"
+            app:layout_constraintTop_toTopOf="@id/settings_edit_firstname_field_bg"
+            app:layout_constraintLeft_toLeftOf="@id/settings_edit_firstname_field_bg"
+            app:layout_constraintRight_toRightOf="@id/settings_edit_firstname_field_bg"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintVertical_chainStyle="spread"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"/>
+        
+    </androidx.cardview.widget.CardView>
 
     <Button
         android:id="@+id/settings_edit_firstname_cancel_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cancel"
-        android:background="@android:color/transparent"
-        android:textColor="#fff"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_margin="16dp"
-        android:visibility="invisible"/>
+        android:visibility="invisible"
+        android:background="@drawable/cancel_settings_btn"
+        style="?android:attr/borderlessButtonStyle"
+        app:layout_constraintTop_toBottomOf="@id/settings_edit_firstname_field_bg"
+        app:layout_constraintLeft_toLeftOf="@id/settings_edit_firstname_field_bg"
+        app:layout_constraintStart_toStartOf="@id/settings_edit_firstname_field_bg"
+        android:layout_marginTop="60dp"/>
+
 
     <Button
         android:id="@+id/settings_edit_firstname_update_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Update"
-        android:background="@android:color/transparent"
-        android:textColor="#fff"
-        android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
-        android:layout_margin="16dp"
-        android:visibility="invisible"/>
-
-    <TextView
-        android:id="@+id/settings_edit_lastname_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Update your Last Name"
-        android:fontFamily="sans-serif"
-        android:textStyle="bold"
-        android:layout_marginTop="70dp"
-        android:textColor="#FFF"
-        android:layout_centerHorizontal="true"
         android:visibility="invisible"
-        android:textSize="20sp"/>
+        android:background="@drawable/update_settings_btn"
+        style="?android:attr/borderlessButtonStyle"
+        app:layout_constraintTop_toBottomOf="@id/settings_edit_firstname_field_bg"
+        app:layout_constraintRight_toRightOf="@id/settings_edit_firstname_field_bg"
+        app:layout_constraintEnd_toEndOf="@id/settings_edit_firstname_field_bg"
+        android:layout_marginTop="60dp"/>
 
-    <EditText
-        android:id="@+id/settings_edit_lastname_field"
+   
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/settings_edit_lastname_info_bg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFF"
-        android:hint="Bigby"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="120dp"
-        android:visibility="invisible" />
+        app:cardElevation="0dp"
+        app:cardCornerRadius="30dp"
+        android:visibility="invisible"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp">
+
+        <TextView
+            android:id="@+id/settings_edit_lastname_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Update your Last Name"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="@color/textGray"
+            android:visibility="invisible"
+            android:textSize="18sp"
+            app:layout_constraintTop_toTopOf="@id/settings_edit_lastname_info_bg"
+            app:layout_constraintLeft_toLeftOf="@id/settings_edit_lastname_info_bg"
+            app:layout_constraintRight_toRightOf="@id/settings_edit_lastname_info_bg"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintVertical_chainStyle="spread"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp" />
+        
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/settings_edit_lastname_field_bg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="0dp"
+        app:cardCornerRadius="30dp"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@id/settings_edit_lastname_info_bg"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp">
+
+        <EditText
+            android:id="@+id/settings_edit_lastname_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Bigby"
+            android:textColorHint="@color/textGray"
+            android:fontFamily="@font/montserrat_regular"
+            android:textColor="@color/textGray"
+            android:visibility="invisible"
+            android:textSize="18sp"
+            android:background="@android:color/transparent"
+            app:layout_constraintTop_toTopOf="@id/settings_edit_lastname_field_bg"
+            app:layout_constraintLeft_toLeftOf="@id/settings_edit_lastname_field_bg"
+            app:layout_constraintRight_toRightOf="@id/settings_edit_lastname_field_bg"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintVertical_chainStyle="spread"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"/>
+    
+    </androidx.cardview.widget.CardView>
 
     <Button
         android:id="@+id/settings_edit_lastname_cancel_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cancel"
-        android:background="@android:color/transparent"
-        android:textColor="#fff"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_margin="16dp"
-        android:visibility="invisible"/>
+        android:visibility="invisible"
+        android:background="@drawable/cancel_settings_btn"
+        style="?android:attr/borderlessButtonStyle"
+        app:layout_constraintTop_toBottomOf="@id/settings_edit_lastname_field_bg"
+        app:layout_constraintLeft_toLeftOf="@id/settings_edit_lastname_field_bg"
+        app:layout_constraintStart_toStartOf="@id/settings_edit_lastname_field_bg"
+        android:layout_marginTop="60dp"/>
+
 
     <Button
         android:id="@+id/settings_edit_lastname_update_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Update"
-        android:background="@android:color/transparent"
-        android:textColor="#fff"
-        android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
-        android:layout_margin="16dp"
-        android:visibility="invisible"/>
-
-    <TextView
-        android:id="@+id/settings_edit_email_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Update your Email"
-        android:fontFamily="sans-serif"
-        android:textStyle="bold"
-        android:layout_marginTop="70dp"
-        android:textColor="#FFF"
-        android:layout_centerHorizontal="true"
         android:visibility="invisible"
-        android:textSize="20sp"/>
+        android:background="@drawable/update_settings_btn"
+        style="?android:attr/borderlessButtonStyle"
+        app:layout_constraintTop_toBottomOf="@id/settings_edit_lastname_field_bg"
+        app:layout_constraintRight_toRightOf="@id/settings_edit_lastname_field_bg"
+        app:layout_constraintEnd_toEndOf="@id/settings_edit_lastname_field_bg"
+        android:layout_marginTop="60dp"/>
 
-    <EditText
-        android:id="@+id/settings_edit_email_field"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/settings_edit_email_info_bg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFF"
-        android:hint="Email"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="120dp"
-        android:visibility="invisible" />
+        app:cardElevation="0dp"
+        app:cardCornerRadius="30dp"
+        android:visibility="invisible"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp">
+
+        <TextView
+            android:id="@+id/settings_edit_email_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="@color/textGray"
+            android:visibility="invisible"
+            android:textSize="18sp"
+            app:layout_constraintTop_toTopOf="@id/settings_edit_email_info_bg"
+            app:layout_constraintLeft_toLeftOf="@id/settings_edit_email_info_bg"
+            app:layout_constraintRight_toRightOf="@id/settings_edit_email_info_bg"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintVertical_chainStyle="spread"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp" />
+        
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/settings_edit_email_field_bg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="0dp"
+        app:cardCornerRadius="30dp"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@id/settings_edit_email_info_bg"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp">
+
+        <EditText
+            android:id="@+id/settings_edit_email_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Update your Email"
+            android:textColorHint="@color/textGray"
+            android:fontFamily="@font/montserrat_regular"
+            android:textColor="@color/textGray"
+            android:visibility="invisible"
+            android:textSize="18sp"
+            android:background="@android:color/transparent"
+            app:layout_constraintTop_toTopOf="@id/settings_edit_email_field_bg"
+            app:layout_constraintLeft_toLeftOf="@id/settings_edit_email_field_bg"
+            app:layout_constraintRight_toRightOf="@id/settings_edit_email_field_bg"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintVertical_chainStyle="spread"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"/>
+        
+
+    </androidx.cardview.widget.CardView>
 
     <Button
         android:id="@+id/settings_edit_email_cancel_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cancel"
-        android:background="@android:color/transparent"
-        android:textColor="#fff"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_margin="16dp"
-        android:visibility="invisible"/>
+        android:visibility="invisible"
+        android:background="@drawable/cancel_settings_btn"
+        style="?android:attr/borderlessButtonStyle"
+        app:layout_constraintTop_toBottomOf="@id/settings_edit_email_field_bg"
+        app:layout_constraintLeft_toLeftOf="@id/settings_edit_email_field_bg"
+        app:layout_constraintStart_toStartOf="@id/settings_edit_email_field_bg"
+        android:layout_marginTop="60dp"/>
+
 
     <Button
         android:id="@+id/settings_edit_email_update_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Update"
-        android:background="@android:color/transparent"
-        android:textColor="#fff"
-        android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
-        android:layout_margin="16dp"
-        android:visibility="invisible"/>
-
-    <TextView
-        android:id="@+id/settings_edit_phonenumber_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Update your Phone Number"
-        android:fontFamily="sans-serif"
-        android:textStyle="bold"
-        android:layout_marginTop="70dp"
-        android:textColor="#FFF"
-        android:layout_centerHorizontal="true"
         android:visibility="invisible"
-        android:textSize="20sp"/>
+        android:background="@drawable/update_settings_btn"
+        style="?android:attr/borderlessButtonStyle"
+        app:layout_constraintTop_toBottomOf="@id/settings_edit_email_field_bg"
+        app:layout_constraintRight_toRightOf="@id/settings_edit_email_field_bg"
+        app:layout_constraintEnd_toEndOf="@id/settings_edit_email_field_bg"
+        android:layout_marginTop="60dp"/>
+    
 
-    <EditText
-        android:id="@+id/settings_edit_phonenumber_field"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/settings_edit_phonenumber_info_bg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFF"
-        android:hint="1122"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="120dp"
-        android:visibility="invisible" />
+        app:cardElevation="0dp"
+        app:cardCornerRadius="30dp"
+        android:visibility="invisible"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp">
+
+        <TextView
+            android:id="@+id/settings_edit_phonenumber_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Update your Phone Number"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="@color/textGray"
+            android:visibility="invisible"
+            android:textSize="18sp"
+            app:layout_constraintTop_toTopOf="@id/settings_edit_phonenumber_info_bg"
+            app:layout_constraintLeft_toLeftOf="@id/settings_edit_phonenumber_info_bg"
+            app:layout_constraintRight_toRightOf="@id/settings_edit_phonenumber_info_bg"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintVertical_chainStyle="spread"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/settings_edit_phonenumber_field_bg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="0dp"
+        app:cardCornerRadius="30dp"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@id/settings_edit_phonenumber_info_bg"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp">
+
+        <EditText
+            android:id="@+id/settings_edit_phonenumber_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Update your Phone Number"
+            android:textColorHint="@color/textGray"
+            android:fontFamily="@font/montserrat_regular"
+            android:textColor="@color/textGray"
+            android:visibility="invisible"
+            android:textSize="18sp"
+            android:background="@android:color/transparent"
+            app:layout_constraintTop_toTopOf="@id/settings_edit_phonenumber_field_bg"
+            app:layout_constraintLeft_toLeftOf="@id/settings_edit_phonenumber_field_bg"
+            app:layout_constraintRight_toRightOf="@id/settings_edit_phonenumber_field_bg"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintVertical_chainStyle="spread"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"/>
+        
+    </androidx.cardview.widget.CardView>
 
     <Button
         android:id="@+id/settings_edit_phonenumber_cancel_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cancel"
-        android:background="@android:color/transparent"
-        android:textColor="#fff"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_margin="16dp"
-        android:visibility="invisible"/>
+        android:visibility="invisible"
+        android:background="@drawable/cancel_settings_btn"
+        style="?android:attr/borderlessButtonStyle"
+        app:layout_constraintTop_toBottomOf="@id/settings_edit_phonenumber_field_bg"
+        app:layout_constraintLeft_toLeftOf="@id/settings_edit_phonenumber_field_bg"
+        app:layout_constraintStart_toStartOf="@id/settings_edit_phonenumber_field_bg"
+        android:layout_marginTop="60dp"/>
+
 
     <Button
         android:id="@+id/settings_edit_phonenumber_update_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Update"
-        android:background="@android:color/transparent"
-        android:textColor="#fff"
-        android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
-        android:layout_margin="16dp"
-        android:visibility="invisible"/>
+        android:visibility="invisible"
+        android:background="@drawable/update_settings_btn"
+        style="?android:attr/borderlessButtonStyle"
+        app:layout_constraintTop_toBottomOf="@id/settings_edit_phonenumber_field_bg"
+        app:layout_constraintRight_toRightOf="@id/settings_edit_phonenumber_field_bg"
+        app:layout_constraintEnd_toEndOf="@id/settings_edit_phonenumber_field_bg"
+        android:layout_marginTop="60dp"/>
 
     <TextView
         android:id="@+id/settings_edit_image_info"
@@ -464,129 +936,274 @@
         android:layout_height="wrap_content"
         android:text="Update your profile picture"
         android:textColor="#fff"
-        android:fontFamily="sans-serif"
-        android:textStyle="bold"
-        android:layout_marginTop="70dp"
-        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/montserrat_bold"
         android:visibility="invisible"
-        android:textSize="20sp"/>
+        android:textSize="18sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="40dp"/>
 
-    <ImageButton
-        android:id="@+id/settings_edit_image"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="200dp"
-        android:layout_centerHorizontal="true"
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/settings_edit_image_card"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:orientation="vertical"
+        app:cardCornerRadius="75dp"
+        app:cardElevation="0dp"
         android:visibility="invisible"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/settings_edit_image_info"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        android:layout_marginTop="20dp">
+
+        <ImageView
+            android:id="@+id/settings_edit_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:clickable="true"/>
+
+    </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/settings_edit_image_tap_to_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Tap image to edit"
+        android:textSize="12sp"
         android:textColor="#fff"
-        android:fontFamily="sans-serif"
-        android:layout_marginTop="300dp"
-        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/montserrat_regular"
         android:visibility="invisible"
-        android:textSize="12sp"/>
-
+        app:layout_constraintTop_toBottomOf="@+id/settings_edit_image_card"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        android:layout_marginTop="5dp"/>
 
     <Button
         android:id="@+id/settings_edit_image_cancel_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cancel"
-        android:background="@android:color/transparent"
-        android:textColor="#fff"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_margin="16dp"
-        android:visibility="invisible"/>
+        android:visibility="invisible"
+        android:background="@drawable/cancel_settings_btn"
+        style="?android:attr/borderlessButtonStyle"
+        app:layout_constraintTop_toBottomOf="@id/settings_edit_image_card"
+        app:layout_constraintLeft_toLeftOf="@id/settings_edit_phonenumber_field_bg"
+        app:layout_constraintStart_toStartOf="@id/settings_edit_phonenumber_field_bg"
+        android:layout_marginTop="60dp"/>
 
 
     <Button
         android:id="@+id/settings_edit_image_update_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Update"
-        android:background="@android:color/transparent"
-        android:textColor="#fff"
-        android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
-        android:layout_margin="16dp"
-        android:visibility="invisible"/>
-
-    <TextView
-        android:id="@+id/settings_edit_password_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Change your password"
-        android:fontFamily="sans-serif"
-        android:textStyle="bold"
-        android:layout_marginTop="70dp"
-        android:textColor="#FFF"
-        android:layout_centerHorizontal="true"
         android:visibility="invisible"
-        android:textSize="20sp"/>
+        android:background="@drawable/update_settings_btn"
+        style="?android:attr/borderlessButtonStyle"
+        app:layout_constraintTop_toBottomOf="@id/settings_edit_image_card"
+        app:layout_constraintRight_toRightOf="@id/settings_edit_phonenumber_field_bg"
+        app:layout_constraintEnd_toEndOf="@id/settings_edit_phonenumber_field_bg"
+        android:layout_marginTop="60dp"/>
 
-    <EditText
-        android:id="@+id/settings_edit_password_old_field"
-        android:inputType="textPassword"
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/settings_edit_password_info_bg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFF"
-        android:hint="Old Password"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="120dp"
-        android:visibility="invisible" />
+        app:cardElevation="0dp"
+        app:cardCornerRadius="30dp"
+        android:visibility="invisible"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp">
 
-    <EditText
-        android:id="@+id/settings_edit_password_field"
-        android:inputType="textPassword"
+        <TextView
+            android:id="@+id/settings_edit_password_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Update your Password"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="@color/textGray"
+            android:visibility="invisible"
+            android:textSize="18sp"
+            app:layout_constraintTop_toTopOf="@id/settings_edit_password_info_bg"
+            app:layout_constraintLeft_toLeftOf="@id/settings_edit_password_info_bg"
+            app:layout_constraintRight_toRightOf="@id/settings_edit_password_info_bg"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintVertical_chainStyle="spread"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp" />
+        
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/settings_edit_password_old_field_bg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFF"
-        android:hint="New Password"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="160dp"
-        android:visibility="invisible" />
+        app:cardElevation="0dp"
+        app:cardCornerRadius="30dp"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@id/settings_edit_password_info_bg"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp">
 
-    <EditText
-        android:id="@+id/settings_edit_password_confirm_field"
-        android:inputType="textPassword"
+        <EditText
+            android:id="@+id/settings_edit_password_old_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Old Password"
+            android:textColorHint="@color/textGray"
+            android:fontFamily="@font/montserrat_regular"
+            android:textColor="@color/textGray"
+            android:visibility="invisible"
+            android:textSize="18sp"
+            android:background="@android:color/transparent"
+            app:layout_constraintTop_toTopOf="@id/settings_edit_password_old_field_bg"
+            app:layout_constraintLeft_toLeftOf="@id/settings_edit_password_old_field_bg"
+            app:layout_constraintRight_toRightOf="@id/settings_edit_password_old_field_bg"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintVertical_chainStyle="spread"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"/>
+        
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/settings_edit_password_field_bg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFF"
-        android:hint="Confirm Password"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="200dp"
-        android:visibility="invisible" />
+        app:cardElevation="0dp"
+        app:cardCornerRadius="30dp"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@id/settings_edit_password_old_field_bg"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp">
+
+        <EditText
+            android:id="@+id/settings_edit_password_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="New Password"
+            android:textColorHint="@color/textGray"
+            android:fontFamily="@font/montserrat_regular"
+            android:textColor="@color/textGray"
+            android:visibility="invisible"
+            android:textSize="18sp"
+            android:background="@android:color/transparent"
+            app:layout_constraintTop_toTopOf="@id/settings_edit_password_field_bg"
+            app:layout_constraintLeft_toLeftOf="@id/settings_edit_password_field_bg"
+            app:layout_constraintRight_toRightOf="@id/settings_edit_password_field_bg"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintVertical_chainStyle="spread"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"/>
+
+    
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/settings_edit_password_confirm_field_bg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="0dp"
+        app:cardCornerRadius="30dp"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@id/settings_edit_password_field_bg"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp">
+
+        <EditText
+            android:id="@+id/settings_edit_password_confirm_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Confirm New Password"
+            android:textColorHint="@color/textGray"
+            android:fontFamily="@font/montserrat_regular"
+            android:textColor="@color/textGray"
+            android:visibility="invisible"
+            android:textSize="18sp"
+            android:background="@android:color/transparent"
+            app:layout_constraintTop_toTopOf="@id/settings_edit_password_confirm_field_bg"
+            app:layout_constraintLeft_toLeftOf="@id/settings_edit_password_confirm_field_bg"
+            app:layout_constraintRight_toRightOf="@id/settings_edit_password_confirm_field_bg"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintVertical_chainStyle="spread"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"/>
+    
+    </androidx.cardview.widget.CardView>
 
     <Button
         android:id="@+id/settings_edit_password_cancel_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cancel"
-        android:background="@android:color/transparent"
-        android:textColor="#fff"
-        android:layout_marginTop="280dp"
-        android:layout_alignParentLeft="true"
-        android:visibility="invisible"/>
+        android:visibility="invisible"
+        android:background="@drawable/cancel_settings_btn"
+        style="?android:attr/borderlessButtonStyle"
+        app:layout_constraintTop_toBottomOf="@id/settings_edit_password_confirm_field_bg"
+        app:layout_constraintLeft_toLeftOf="@id/settings_edit_password_confirm_field_bg"
+        app:layout_constraintStart_toStartOf="@id/settings_edit_password_confirm_field_bg"
+        android:layout_marginTop="60dp"/>
+
 
     <Button
         android:id="@+id/settings_edit_password_update_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Update"
-        android:background="@android:color/transparent"
-        android:textColor="#fff"
-        android:layout_marginTop="280dp"
-        android:layout_alignParentRight="true"
-        android:visibility="invisible"/>
+        android:visibility="invisible"
+        android:background="@drawable/update_settings_btn"
+        style="?android:attr/borderlessButtonStyle"
+        app:layout_constraintTop_toBottomOf="@id/settings_edit_password_confirm_field_bg"
+        app:layout_constraintRight_toRightOf="@id/settings_edit_password_confirm_field_bg"
+        app:layout_constraintEnd_toEndOf="@id/settings_edit_password_confirm_field_bg"
+        android:layout_marginTop="60dp"/>
+    
 
 
 
-
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

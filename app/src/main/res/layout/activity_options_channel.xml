@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -10,92 +10,140 @@
 
     <TextView
         android:id="@+id/options_channel_title"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Channel Name"
-        android:layout_marginTop="50dp"/>
+        android:textSize="16sp"
+        android:textColor="@color/textGray"
+        android:background="@android:color/transparent"
+        android:fontFamily="@font/montserrat_medium"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"/>
 
     <TextView
         android:id="@+id/options_channel_title_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Channel Title • Tap to edit"
-        android:fontFamily="sans-serif"
-        android:layout_marginTop="70dp"
-        android:textSize="12sp"/>
+        android:fontFamily="@font/montserrat_regular"
+        android:textColor="@color/placeholderGray"
+        android:alpha="0.22"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@+id/options_channel_title"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"/>
 
-    <RelativeLayout
+
+    <View
         android:id="@+id/options_channel_title_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/options_channel_title"
-        android:layout_alignBottom="@+id/options_channel_title_info"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@+id/options_channel_title"
+        app:layout_constraintBottom_toBottomOf="@+id/options_channel_title_info"
         android:clickable="true"/>
-
-
-    <Switch
-        android:id="@+id/options_channel_visibility_switch"
-        android:layout_width="50dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="100dp"
-        android:layout_alignParentRight="true"
-        android:checked="true"
-        />
 
     <TextView
         android:id="@+id/options_channel_visibility_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Public"
-        android:fontFamily="sans-serif"
-        android:layout_marginTop="100dp"
-        android:textSize="14sp"/>
+        android:textSize="16sp"
+        android:textColor="@color/textGray"
+        android:background="@android:color/transparent"
+        android:fontFamily="@font/montserrat_medium"
+        app:layout_constraintTop_toBottomOf="@id/options_channel_title_info"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"/>
 
     <TextView
         android:id="@+id/options_channel_visibility_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Channel Visibility • Everyone"
-        android:fontFamily="sans-serif"
-        android:layout_marginTop="120dp"
-        android:textSize="12sp"/>
+        android:fontFamily="@font/montserrat_regular"
+        android:textColor="@color/placeholderGray"
+        android:alpha="0.22"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@+id/options_channel_visibility_status"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"/>
 
-    <Button
-        android:id="@+id/options_channel_view_members_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="View Members"
-        android:background="#fc241c"
-        android:textColor="#fff"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:stateListAnimator="@null"
-        android:layout_margin="16dp"/>
-
-    <Button
-        android:id="@+id/options_channel_leave_channel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Leave Channel"
-        android:background="#fc241c"
-        android:textColor="#fff"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:stateListAnimator="@null"
-        android:layout_margin="16dp"/>
+    <Switch
+        android:id="@+id/options_channel_visibility_switch"
+        android:layout_width="50dp"
+        android:layout_height="0dp"
+        android:scaleX="1.25"
+        android:scaleY="1.25"
+        android:checked="true"
+        app:layout_constraintTop_toTopOf="@id/options_channel_visibility_status"
+        app:layout_constraintBottom_toBottomOf="@id/options_channel_visibility_info"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintVertical_chainStyle="spread"
+        android:layout_marginRight="20dp"
+        android:layout_marginEnd="20dp"/>
 
 
     <Button
         android:id="@+id/options_channel_add_members_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Members"
-        android:background="#fc241c"
-        android:textColor="#fff"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:stateListAnimator="@null"
-        android:layout_margin="16dp"/>
+        android:background="@drawable/add_members_create_group"
+        style="?android:attr/borderlessButtonStyle"
+        app:layout_constraintTop_toBottomOf="@+id/options_channel_visibility_info"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        />
+
+    <Button
+        android:id="@+id/options_channel_view_members_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/view_members_options"
+        style="?android:attr/borderlessButtonStyle"
+        app:layout_constraintTop_toBottomOf="@+id/options_channel_visibility_info"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginEnd="20dp"
+        />
+
+
+    <View
+        android:id="@+id/options_channel_divider"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/redDivider"
+        android:alpha="0.2"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <Button
+        android:id="@+id/options_channel_leave_channel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/leave_channel_options"
+        style="?android:attr/borderlessButtonStyle"
+        app:layout_constraintTop_toTopOf="@+id/options_channel_divider"
+        app:layout_constraintBottom_toBottomOf="@+id/options_channel_divider"
+        app:layout_constraintLeft_toLeftOf="@+id/options_channel_divider"
+        app:layout_constraintRight_toRightOf="@+id/options_channel_divider"
+        app:layout_constraintVertical_chainStyle="spread"
+        app:layout_constraintHorizontal_chainStyle="spread" />
+    
 
     <View
         android:id="@+id/options_channel_background"
@@ -104,150 +152,209 @@
         android:alpha="0.85"
         android:background="#000000"
         android:visibility="invisible"
-        android:clickable="true"
-        />
+        android:clickable="true"/>
 
-    <TextView
-        android:id="@+id/options_channel_edit_title_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Update the title of Test"
-        android:fontFamily="sans-serif"
-        android:textStyle="bold"
-        android:layout_marginTop="70dp"
-        android:textColor="#FFF"
-        android:layout_centerHorizontal="true"
-        android:visibility="invisible"
-        android:textSize="20sp"/>
-
-    <EditText
-        android:id="@+id/options_channel_edit_title_field"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/options_channel_edit_title_info_bg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFF"
-        android:hint="Test"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="120dp"
-        android:visibility="invisible" />
+        app:cardElevation="0dp"
+        app:cardCornerRadius="30dp"
+        android:visibility="invisible"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp">
+
+
+        <TextView
+            android:id="@+id/options_channel_edit_title_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Update the title of Test"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="@color/textGray"
+            android:visibility="invisible"
+            android:textSize="18sp"
+            app:layout_constraintTop_toTopOf="@+id/options_channel_edit_title_info_bg"
+            app:layout_constraintLeft_toLeftOf="@+id/options_channel_edit_title_info_bg"
+            app:layout_constraintRight_toRightOf="@+id/options_channel_edit_title_info_bg"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintVertical_chainStyle="spread"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/options_channel_edit_title_field_bg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="0dp"
+        app:cardCornerRadius="30dp"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@id/options_channel_edit_title_info_bg"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp">
+
+
+        <EditText
+            android:id="@+id/options_channel_edit_title_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Test"
+            android:textColorHint="@color/textGray"
+            android:fontFamily="@font/montserrat_regular"
+            android:textColor="@color/textGray"
+            android:visibility="invisible"
+            android:textSize="18sp"
+            android:background="@android:color/transparent"
+            app:layout_constraintTop_toTopOf="@+id/options_channel_edit_title_field_bg"
+            app:layout_constraintLeft_toLeftOf="@+id/options_channel_edit_title_field_bg"
+            app:layout_constraintRight_toRightOf="@+id/options_channel_edit_title_field_bg"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintVertical_chainStyle="spread"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"/>
+
+    </androidx.cardview.widget.CardView>
+
 
     <Button
         android:id="@+id/options_channel_edit_title_cancel_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cancel"
-        android:background="@android:color/transparent"
-        android:textColor="#fff"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_margin="16dp"
-        android:visibility="invisible"/>
+        android:visibility="invisible"
+        android:background="@drawable/cancel_settings_btn"
+        style="?android:attr/borderlessButtonStyle"
+        app:layout_constraintTop_toBottomOf="@+id/options_channel_edit_title_field_bg"
+        app:layout_constraintLeft_toLeftOf="@+id/options_channel_edit_title_field_bg"
+        app:layout_constraintStart_toStartOf="@+id/options_channel_edit_title_field_bg"
+        android:layout_marginTop="60dp"/>
 
 
     <Button
         android:id="@+id/options_channel_edit_title_update_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Update"
-        android:background="@android:color/transparent"
-        android:textColor="#fff"
-        android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
-        android:layout_margin="16dp"
-        android:visibility="invisible"/>
+        android:visibility="invisible"
+        android:background="@drawable/update_settings_btn"
+        style="?android:attr/borderlessButtonStyle"
+        app:layout_constraintTop_toBottomOf="@+id/options_channel_edit_title_field_bg"
+        app:layout_constraintRight_toRightOf="@+id/options_channel_edit_title_field_bg"
+        app:layout_constraintEnd_toEndOf="@+id/options_channel_edit_title_field_bg"
+        android:layout_marginTop="60dp"/>
 
 
-    <TextView
-        android:id="@+id/options_channel_edit_image_info"
-        android:layout_width="wrap_content"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/options_channel_view_members_info_bg"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Update the channel's image"
-        android:textColor="#fff"
-        android:fontFamily="sans-serif"
-        android:textStyle="bold"
-        android:layout_marginTop="70dp"
-        android:layout_centerHorizontal="true"
+        app:cardElevation="0dp"
+        app:cardCornerRadius="30dp"
         android:visibility="invisible"
-        android:textSize="20sp"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp">
 
-    <ImageButton
-        android:id="@+id/options_channel_edit_image"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="200dp"
-        android:layout_centerHorizontal="true"
+
+        <TextView
+            android:id="@+id/options_channel_view_members_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Test Members"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="@color/textGray"
+            android:visibility="invisible"
+            android:textSize="18sp"
+            app:layout_constraintTop_toTopOf="@+id/options_channel_view_members_info_bg"
+            app:layout_constraintLeft_toLeftOf="@+id/options_channel_view_members_info_bg"
+            app:layout_constraintRight_toRightOf="@+id/options_channel_view_members_info_bg"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintVertical_chainStyle="spread"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp" />
+
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/options_channel_view_members_recycler_bg"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:cardElevation="0dp"
+        app:cardCornerRadius="30dp"
         android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@id/options_channel_view_members_info_bg"
+        app:layout_constraintBottom_toTopOf="@+id/options_channel_view_members_exit_btn"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="40dp"
         />
-
-    <TextView
-        android:id="@+id/options_channel_edit_image_tap_to_edit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tap image to edit"
-        android:textColor="#fff"
-        android:fontFamily="sans-serif"
-        android:textStyle="bold"
-        android:layout_marginTop="300dp"
-        android:layout_centerHorizontal="true"
-        android:visibility="invisible"
-        android:textSize="12sp"/>
-
-
-    <Button
-        android:id="@+id/options_channel_edit_image_cancel_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cancel"
-        android:background="@android:color/transparent"
-        android:textColor="#fff"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_margin="16dp"
-        android:visibility="invisible"/>
-
-
-    <Button
-        android:id="@+id/options_channel_edit_image_update_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Update"
-        android:background="@android:color/transparent"
-        android:textColor="#fff"
-        android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
-        android:layout_margin="16dp"
-        android:visibility="invisible"/>
-
-    <TextView
-        android:id="@+id/options_channel_view_members_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Test Members"
-        android:textColor="#fff"
-        android:fontFamily="sans-serif"
-        android:textStyle="bold"
-        android:layout_marginTop="70dp"
-        android:layout_centerHorizontal="true"
-        android:visibility="invisible"
-        android:textSize="20sp"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_marginTop="100dp"
         android:id="@+id/recycler_options_channel_view_members"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintLeft_toLeftOf="@+id/options_channel_view_members_recycler_bg"
+        app:layout_constraintRight_toRightOf="@+id/options_channel_view_members_recycler_bg"
+        app:layout_constraintTop_toTopOf="@+id/options_channel_view_members_recycler_bg"
+        app:layout_constraintBottom_toBottomOf="@+id/options_channel_view_members_recycler_bg"
         android:visibility="invisible"
-        />
+        android:layout_marginLeft="40dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"/>
 
     <Button
         android:id="@+id/options_channel_view_members_exit_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Exit"
-        android:background="@android:color/transparent"
-        android:textColor="#fff"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="16dp"
-        android:visibility="invisible"/>
+        android:visibility="invisible"
+        android:background="@drawable/exit_options"
+        style="?android:attr/borderlessButtonStyle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        android:layout_marginBottom="20dp"/>
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

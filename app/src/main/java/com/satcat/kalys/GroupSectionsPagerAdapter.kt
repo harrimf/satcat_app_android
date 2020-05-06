@@ -9,19 +9,18 @@ import androidx.fragment.app.FragmentPagerAdapter
 class GroupSectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
     FragmentPagerAdapter(fm) {
 
-    lateinit var activeGroupFragment: ActiveGroupFragment
-    lateinit var activeChannelFragment: ActiveChannelFragment
+    val activeGroupFragment: ActiveGroupFragment = ActiveGroupFragment()
+    val activeChannelFragment: ActiveChannelFragment = ActiveChannelFragment()
+
 
 
     override fun getItem(position: Int): Fragment {
-        when (position) {
+        return when (position) {
             0 -> {
-                activeGroupFragment = ActiveGroupFragment()
-                return activeGroupFragment
+                activeGroupFragment
             }
             1 -> {
-                activeChannelFragment = ActiveChannelFragment()
-                return activeChannelFragment
+                activeChannelFragment
             }
             else -> {
                 throw IllegalStateException("$position is illegal")
@@ -29,19 +28,6 @@ class GroupSectionsPagerAdapter(private val context: Context, fm: FragmentManage
         }
     }
 
-    override fun getPageTitle(position: Int): CharSequence? {
-        when (position) {
-            0 -> {
-                return "Active Group"
-            }
-            1 -> {
-                return "Active Channel"
-            }
-            else -> {
-                return null
-            }
-        }
-    }
 
     override fun getCount(): Int {
         // Show 2 total pages.

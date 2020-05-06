@@ -2,15 +2,17 @@ package com.satcat.kalys
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.SnapHelper
 import com.satcat.kalys.Managers.SocketIOManager
 import com.satcat.kalys.Managers.UserManager
 import com.satcat.kalys.Models.ChatChannel
@@ -30,16 +32,18 @@ class ActiveGroupFragment : Fragment()
 
     private lateinit var realm: Realm
 
-    lateinit var settingsBtn : Button
     lateinit var newChannelBtn : Button
     lateinit var leaveGroupBtn : Button
 
     lateinit var background : View
 
+    lateinit var groupImg : ImageView
+
     lateinit var joinChannelTitle : TextView
     lateinit var joinChannelNoticeTitle : TextView
     lateinit var joinChannelNotice : TextView
     lateinit var joinChannelMembersTitle : TextView
+    lateinit var joinChannelNoticeContainer : ConstraintLayout
 
     lateinit var joinChannelRecycler : RecyclerView
 
@@ -47,6 +51,8 @@ class ActiveGroupFragment : Fragment()
     lateinit var joinChannelUpdateBtn : Button
 
     lateinit var joinChannel : ChatChannel
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -57,30 +63,26 @@ class ActiveGroupFragment : Fragment()
 
         val parent = activity as GroupTabActivity
 
-        settingsBtn = view.findViewById(R.id.settings_group_btn)
-        newChannelBtn = view.findViewById(R.id.create_channel_btn)
-        leaveGroupBtn = view.findViewById(R.id.leave_group_btn)
+        setHasOptionsMenu(true)
+
+        newChannelBtn = view.findViewById(R.id.active_group_create_channel_btn)
+        leaveGroupBtn = view.findViewById(R.id.active_group_leave_group_btn)
 
         background = view.findViewById(R.id.active_group_background)
+
+        groupImg = view.findViewById(R.id.active_group_image)
 
         joinChannelTitle = view.findViewById(R.id.active_group_join_title)
         joinChannelNoticeTitle = view.findViewById(R.id.active_group_join_notice_title)
         joinChannelNotice = view.findViewById(R.id.active_group_join_notice)
         joinChannelMembersTitle = view.findViewById(R.id.active_group_join_members_info)
+        joinChannelNoticeContainer = view.findViewById(R.id.active_group_join_notice_container)
 
         joinChannelRecycler = view.findViewById(R.id.active_group_join_recycler_members)
 
         joinChannelCancelBtn = view.findViewById(R.id.active_group_join_cancel_btn)
         joinChannelUpdateBtn = view.findViewById(R.id.active_group_join_update_btn)
 
-
-
-        settingsBtn.setOnClickListener {
-            val intent = Intent(activity, OptionsGroupActivity::class.java)
-            intent.putExtra("groupID", parent.activeGroup.ID)
-            intent.putExtra("channelID", parent.activeChannel.ID)
-            startActivity(intent)
-        }
 
         newChannelBtn.setOnClickListener {
             val intent = Intent(activity, CreateChannelActivity::class.java)
@@ -115,17 +117,46 @@ class ActiveGroupFragment : Fragment()
     override fun onStart() {
         super.onStart()
         EventBus.getDefault().register(this)
+        val parent = activity as GroupTabActivity
+
+        groupImg.setImageBitmap(parent.activeGroup.getImage())
 
         handleReceive()
     }
 
-    fun fragmentIsActive() {
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.group_settings_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
 
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+        val parent = activity as GroupTabActivity
+
+        if(id == R.id.menu_group_settings_btn) {
+            val intent = Intent(activity, OptionsGroupActivity::class.java)
+            intent.putExtra("groupID", parent.activeGroup.ID)
+            intent.putExtra("channelID", parent.activeChannel.ID)
+            startActivity(intent)
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    fun fragmentIsActive() {
+        val parent = activity as GroupTabActivity
+        groupImg.setImageBitmap(parent.activeGroup.getImage())
+
+        handleReceive()
     }
 
     private fun initNoticeRecyclerView(recycler : RecyclerView) {
+
+        var helper : SnapHelper = PagerSnapHelper()
+        helper.attachToRecyclerView(recycler)
+
         recycler.apply {
-            layoutManager = LinearLayoutManager(activity)
+            layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
             noticesAdapter = RecyclerAdapter(RecyclerAdapter.RecyclerType.GROUPNOTICES) //give string for group
             //can use decorator
             adapter = noticesAdapter
@@ -251,6 +282,7 @@ class ActiveGroupFragment : Fragment()
         joinChannelNoticeTitle.isVisible = visible
         joinChannelNotice.isVisible = visible
         joinChannelMembersTitle.isVisible = visible
+        joinChannelNoticeContainer.isVisible = visible
 
         joinChannelRecycler.isVisible = visible
 
@@ -270,7 +302,6 @@ class ActiveGroupFragment : Fragment()
         handleReceive()
 
     }
-
 
 
     override fun onStop() {

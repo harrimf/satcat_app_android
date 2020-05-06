@@ -2,6 +2,7 @@ package com.satcat.kalys
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -30,6 +31,9 @@ class CreateChannelActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_channel)
 
+        supportActionBar!!.title = "Create Channel"
+
+
         val realm = Realm.getDefaultInstance()
 
         activeGroup = realm.where<ChatGroup>().equalTo("ID", intent.getStringExtra("groupID")).findFirst()!!
@@ -53,8 +57,8 @@ class CreateChannelActivity : AppCompatActivity() {
             finish()
         }
 
-        val visibilityStatus = create_group_visibility_status
-        val visibilityDetails = create_group_visibility_info
+        val visibilityStatus = create_channel_visibility_status
+        val visibilityDetails = create_channel_visibility_info
         val visibilitySwitch : Switch = findViewById(R.id.create_channel_visibility_switch)
 
         visibilitySwitch.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
@@ -87,12 +91,15 @@ class CreateChannelActivity : AppCompatActivity() {
             val removeLbl : TextView = findViewById(R.id.create_channel_members_remove_text)
             removeLbl.isVisible = true
         }
+
+        val headerLbl : TextView = findViewById(R.id.create_channel_header_info)
+        headerLbl.text = "The new Channel will be added to " + activeGroup.Title
     }
 
     private fun initRecyclerView(recycler : RecyclerView) {
         recycler.apply {
             layoutManager = LinearLayoutManager(this.context)
-            membersAdapter = RecyclerAdapter(RecyclerAdapter.RecyclerType.CREATEUSERS) //give string for group
+            membersAdapter = RecyclerAdapter(RecyclerAdapter.RecyclerType.CREATEUSERS) //give string for channel
             //can use decorator
             adapter = membersAdapter
 
@@ -135,6 +142,11 @@ class CreateChannelActivity : AppCompatActivity() {
             newChannel.Members.add(UserManager.shared.getUser())
         }
 
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        finish()
+        return true
     }
 
 }

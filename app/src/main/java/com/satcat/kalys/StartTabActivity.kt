@@ -5,11 +5,14 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
+import android.widget.TextView
 import com.google.android.material.tabs.TabLayout
 import androidx.viewpager.widget.ViewPager
 import androidx.appcompat.app.AppCompatActivity
 
 class StartTabActivity : AppCompatActivity() {
+
+    lateinit var startTabText : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,6 +23,9 @@ class StartTabActivity : AppCompatActivity() {
         viewPager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = findViewById(R.id.tabs)
         tabs.setupWithViewPager(viewPager)
+
+
+        startTabText = findViewById(R.id.start_tab_explain_lbl)
 
         val joinGroupBtn: Button = findViewById(R.id.nav_join_group_btn)
         joinGroupBtn.setOnClickListener {
@@ -33,6 +39,22 @@ class StartTabActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        supportActionBar!!.title = sectionsPagerAdapter.getPageTitle(viewPager.currentItem)
+
+        viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+            override fun onPageScrollStateChanged(state: Int) {}
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
+            }
+
+            override fun onPageSelected(position: Int) {
+                supportActionBar!!.title = sectionsPagerAdapter.getPageTitle(position)
+
+            }
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

@@ -5,13 +5,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fff"
     tools:context=".AllChannelsFragment">
+
+    <TextView
+        android:id="@+id/all_channels_explain_lbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="All your channels will appear here"
+        android:textAlignment="center"
+        android:fontFamily="@font/montserrat_bold"
+        android:textColor="@color/textGray"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/guideline_all_channels"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_all_channels"
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.5"
+        android:layout_marginBottom="70dp"/>
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
+        android:paddingBottom="70dp"
         android:id="@+id/recycler_channels"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

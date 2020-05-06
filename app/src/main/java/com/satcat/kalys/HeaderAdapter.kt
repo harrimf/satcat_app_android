@@ -134,7 +134,6 @@ class HeaderAdapter(private val recyclerType : HeaderRecyclerType, private var i
 
         fun bind(title: String) {
             header.text = title
-
         }
     }
 
@@ -233,20 +232,20 @@ class HeaderAdapter(private val recyclerType : HeaderRecyclerType, private var i
 
             val notificationCount = channel.NotificationCount
 
-            if(channel.ReceivedNotice && notificationCount > 0) {
+            if(channel.ReceivedNotice && notificationCount > 0 && channel.IsMember) {
                 channelNotificationCount.text = notificationCount.toString()
                 channelNotifications.text = "New Messages & Notice"
                 channelNotificationImg.setImageResource(R.drawable.notification_on)
                 channelMembers.text = " • " + channelMembers.text
 
-            } else if(channel.ReceivedNotice) {
+            } else if(channel.ReceivedNotice && channel.IsMember) {
                 channelNotificationCount.text = ""
                 channelNotifications.text = "New Notice"
                 channelNotificationImg.setImageResource(R.drawable.notification_on)
                 channelMembers.text = " • " + channelMembers.text
 
 
-            } else if (notificationCount > 0) {
+            } else if (notificationCount > 0 && channel.IsMember) {
                 channelNotificationCount.text = notificationCount.toString()
                 channelNotifications.text = "New Messages"
                 channelNotificationImg.setImageResource(R.drawable.notification_on)

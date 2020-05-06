@@ -33,7 +33,7 @@ class StartSectionsPagerAdapter(private val context: Context, fm: FragmentManage
                 return "Groups"
             }
             1 -> {
-                return "All Channels"
+                return "Channels"
             }
             else -> {
                 return null

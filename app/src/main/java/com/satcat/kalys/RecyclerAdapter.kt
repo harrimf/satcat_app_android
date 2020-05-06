@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.satcat.kalys.Managers.SocketIOManager
+import com.satcat.kalys.Managers.UserManager
 import com.satcat.kalys.Models.ChatChannel
 import com.satcat.kalys.Models.ChatGroup
 import com.satcat.kalys.Models.ChatMessage
@@ -24,6 +25,7 @@ import kotlinx.android.synthetic.main.layout_notices_cell.view.*
 import kotlinx.android.synthetic.main.layout_search_group_cell.view.*
 import kotlinx.android.synthetic.main.layout_user_cell.view.*
 import org.json.JSONObject
+import java.text.DateFormat
 import java.util.*
 
 class RecyclerAdapter(type: RecyclerType) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -244,6 +246,7 @@ class RecyclerAdapter(type: RecyclerType) : RecyclerView.Adapter<RecyclerView.Vi
             groupTitle.text = group.Title
             groupMembers.text =  if (memberCount == 1) "1 Member" else  "$memberCount Members"
             groupChannels.text =  if (channelCount == 1) "1 Channel" else  "$channelCount Channels"
+            groupImg.setImageBitmap(group.getImage())
             updateNotificationViews(group)
 
         }
@@ -253,11 +256,11 @@ class RecyclerAdapter(type: RecyclerType) : RecyclerView.Adapter<RecyclerView.Vi
             var noticeOn = false
 
             for(channel in group.Channels) {
-                if(channel.NotificationCount > 0) {
+                if(channel.NotificationCount > 0 && channel.IsMember) {
                     msgOn = true
                 }
 
-                if(channel.ReceivedNotice) {
+                if(channel.ReceivedNotice && channel.IsMember) {
                     noticeOn = true
                 }
 
@@ -289,15 +292,36 @@ class RecyclerAdapter(type: RecyclerType) : RecyclerView.Adapter<RecyclerView.Vi
     ) : RecyclerView.ViewHolder(itemView) {
         val senderTxt = itemView.sender_txt
         val messageTxt = itemView.message_txt
+        val messageBox = itemView.message_txt_card
         val timeTxt = itemView.time_txt
         val senderImg = itemView.sender_image
-        val attachmentImg = itemView.attachment_image
+        lateinit var Message:ChatMessage
+        //val attachmentImg = itemView.attachment_image
 
 
         fun bind(message: ChatMessage) {
+
+            Message = message
+
+
+            if(message.ImagePath != "") { //IMAGE
+                //TODO: Handle image
+
+            } else {
+                messageTxt.text = message.Text
+
+
+            }
+
+            if(message.Sender!!.ID == UserManager.shared.getUser().ID) {
+                messageBox.setCardBackgroundColor(Color.parseColor("#ff6363"))
+            } else {
+                messageBox.setCardBackgroundColor(Color.parseColor("#eeeeee"))
+            }
+
+            senderImg.setImageBitmap(Message.Sender!!.getImage())
             senderTxt.text = message.Sender!!.FirstName
-            messageTxt.text = message.Text
-            timeTxt.text = message.CreatedDate.toString()
+            timeTxt.text = " • " + DateFormat.getDateTimeInstance().format(message.CreatedDate)
         }
 
 
@@ -307,9 +331,9 @@ class RecyclerAdapter(type: RecyclerType) : RecyclerView.Adapter<RecyclerView.Vi
         itemView: View
     ):  RecyclerView.ViewHolder(itemView) {
 
-        val noticeTxt = itemView.channel_notice
-        val noticeSenderTxt = itemView.channel_notice_sender
-        val channelTitleTxt = itemView.group_channel_title
+        val noticeTxt = itemView.notice_cell_notice_txt
+        val noticeSenderTxt = itemView.notice_cell_sender
+        val channelTitleTxt = itemView.notice_cell_channel_title
 
         fun bind(channel: ChatChannel) {
             noticeTxt.text = channel.Notice
@@ -328,14 +352,17 @@ class RecyclerAdapter(type: RecyclerType) : RecyclerView.Adapter<RecyclerView.Vi
         val lastName = itemView.user_lastname
         val alreadyAdded = itemView.user_already_added
         val container = itemView.user_container
+        val memberImg = itemView.user_image
+
 
 
 
         fun bind(user: User) {
             userName.text = user.UserName
             firstName.text = user.FirstName
-            lastName.text = user.LastName
+            lastName.text = " " + user.LastName
             alreadyAdded.isVisible = false
+            memberImg.setImageBitmap(user.getImage())
 
             container.setBackgroundColor(Color.TRANSPARENT)
 
@@ -359,6 +386,7 @@ class RecyclerAdapter(type: RecyclerType) : RecyclerView.Adapter<RecyclerView.Vi
         val channelType = itemView.channel_type
         val channelNotifications = itemView.channel_notifications
         val channelNotificationImg = itemView.notification_image
+        val channelNotificationCount = itemView.channel_notification_count
 
 
         fun bind(channel: ChatChannel) {
@@ -369,9 +397,38 @@ class RecyclerAdapter(type: RecyclerType) : RecyclerView.Adapter<RecyclerView.Vi
             channelMembers.text = if (memberCount == 1) "1 Member" else  "$memberCount Members"
             channelType.text =  if (channel.IsMain) " • " + "Main" else ""
             channelNotifications.text = "New Messages"
-            //Need logic of hiding and showing notification count Label
-            //channelImage.setImageURI()
 
+            updateNotificationViews(channel)
+
+        }
+
+        private fun updateNotificationViews(channel: ChatChannel) {
+
+            val notificationCount = channel.NotificationCount
+
+            if(channel.ReceivedNotice && notificationCount > 0) {
+                channelNotificationCount.text = notificationCount.toString()
+                channelNotifications.text = "New Messages & Notice"
+                channelNotificationImg.setImageResource(R.drawable.notification_on)
+                channelMembers.text = " • " + channelMembers.text
+
+            } else if(channel.ReceivedNotice) {
+                channelNotificationCount.text = ""
+                channelNotifications.text = "New Notice"
+                channelNotificationImg.setImageResource(R.drawable.notification_on)
+                channelMembers.text = " • " + channelMembers.text
+
+
+            } else if (notificationCount > 0) {
+                channelNotificationCount.text = notificationCount.toString()
+                channelNotifications.text = "New Messages"
+                channelNotificationImg.setImageResource(R.drawable.notification_on)
+                channelMembers.text = " • " + channelMembers.text
+            } else {
+                channelNotificationCount.text = ""
+                channelNotifications.text = ""
+                channelNotificationImg.setImageResource(R.drawable.notification_off)
+            }
         }
     }
 
@@ -383,6 +440,7 @@ class RecyclerAdapter(type: RecyclerType) : RecyclerView.Adapter<RecyclerView.Vi
         val firstName = itemView.user_firstname
         val lastName = itemView.user_lastname
         val alreadyAdded = itemView.user_already_added
+        val memberImg = itemView.user_image
         lateinit var member: User
 
 
@@ -390,8 +448,9 @@ class RecyclerAdapter(type: RecyclerType) : RecyclerView.Adapter<RecyclerView.Vi
         fun bind(user: User) {
             userName.text = user.UserName
             firstName.text = user.FirstName
-            lastName.text = user.LastName
-            alreadyAdded.text = "• Added"
+            lastName.text = " " + user.LastName
+            alreadyAdded.visibility = View.GONE
+            memberImg.setImageBitmap(user.getImage())
 
             member = user
             //Need logic of hiding and showing notification count Label
@@ -408,13 +467,15 @@ class RecyclerAdapter(type: RecyclerType) : RecyclerView.Adapter<RecyclerView.Vi
         val firstName = itemView.user_firstname
         val lastName = itemView.user_lastname
         val alreadyAdded = itemView.user_already_added
+        val userImg = itemView.user_image
 
 
         fun bind(user: User) {
             userName.text = user.UserName
             firstName.text = user.FirstName
-            lastName.text = user.LastName
-            alreadyAdded.text = "• Added"
+            lastName.text = " " + user.LastName
+            alreadyAdded.text = " • Added"
+            userImg.setImageBitmap(user.getImage())
 
             //Need logic of hiding and showing notification count Label
             //channelImage.setImageURI()
@@ -437,6 +498,7 @@ class RecyclerAdapter(type: RecyclerType) : RecyclerView.Adapter<RecyclerView.Vi
         val groupChannels = itemView.search_group_channels
         val groupMembers = itemView.search_group_members
         val alreadyMember = itemView.search_group_already_member
+        val groupImg = itemView.search_group_image
         var inGroup : Boolean = false
 
 
@@ -447,9 +509,10 @@ class RecyclerAdapter(type: RecyclerType) : RecyclerView.Adapter<RecyclerView.Vi
             val memberCount = extras.getInt("MemberCount")
 
             groupTitle.text = group.Title
-            groupChannels.text = if (channelCount == 1) "1 Channel" else  "$channelCount Channels"
+            groupChannels.text = if (channelCount == 1) " • 1 Channel" else  " • $channelCount Channels"
             groupMembers.text = if (memberCount == 1) "1 Member" else  "$memberCount Members"
-            alreadyMember.text = "• Already Member"
+            alreadyMember.text = " • Already Member"
+            groupImg.setImageBitmap(group.getImage())
 
             val realm: Realm = Realm.getDefaultInstance()
 
@@ -463,11 +526,6 @@ class RecyclerAdapter(type: RecyclerType) : RecyclerView.Adapter<RecyclerView.Vi
                 alreadyMember.visibility = View.INVISIBLE
             }
 
-
-
-            //Need logic of hiding and showing notification count Label
-            //channelImage.setImageURI()
-
         }
     }
 
@@ -479,16 +537,16 @@ class RecyclerAdapter(type: RecyclerType) : RecyclerView.Adapter<RecyclerView.Vi
         val firstName = itemView.user_firstname
         val lastName = itemView.user_lastname
         val alreadyAdded = itemView.user_already_added
+        val memberImg = itemView.user_image
 
 
 
         fun bind(user: User) {
             userName.text = user.UserName
             firstName.text = user.FirstName
-            lastName.text = user.LastName
+            lastName.text = " " + user.LastName
             alreadyAdded.visibility = View.GONE
-            //Need logic of hiding and showing notification count Label
-            //channelImage.setImageURI()
+            memberImg.setImageBitmap(user.getImage())
 
         }
     }

@@ -55,17 +55,36 @@
             app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintVertical_chainStyle="spread"/>
 
-        <ImageView
-            android:id="@+id/group_image"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/group_card"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:adjustViewBounds="true"
-            android:background="@color/redDivider"
+            android:orientation="vertical"
+            app:cardCornerRadius="64dp"
+            app:cardElevation="0dp"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toStartOf="@+id/guideline08"
             app:layout_constraintStart_toStartOf="@id/guideline02"
             app:layout_constraintTop_toBottomOf="@id/group_notification_image"
-            android:layout_marginTop="5dp" />
+            android:layout_marginTop="5dp">
+
+            <ImageView
+                android:id="@+id/group_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop" />
+
+        </androidx.cardview.widget.CardView>
+
+<!--        <ImageView-->
+<!--            android:id="@+id/group_image"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="0dp"-->
+<!--            app:layout_constraintDimensionRatio="1:1"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/guideline08"-->
+<!--            app:layout_constraintStart_toStartOf="@id/guideline02"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/group_notification_image"-->
+<!--            android:layout_marginTop="5dp" />-->
 
 
 
@@ -80,7 +99,7 @@
                 android:textAlignment="center"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/group_image"
+                app:layout_constraintTop_toBottomOf="@+id/group_card"
                 android:layout_marginTop="10dp" />
 
             <View
@@ -92,10 +111,10 @@
                 app:layout_constraintBottom_toTopOf="@id/group_members_count" />
 
             <TextView
-                android:id="@+id/group_members_count"
+                android:id="@+id/group_channels_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="20 Members"
+                android:text="20 Channels"
                 android:textSize="12sp"
                 android:textAlignment="center"
                 android:fontFamily="@font/montserrat_regular"
@@ -103,14 +122,14 @@
                 android:layout_marginBottom="5dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@+id/group_channels_count"
+                app:layout_constraintRight_toLeftOf="@+id/group_members_count"
                 app:layout_constraintHorizontal_chainStyle="spread" />
 
             <TextView
-                android:id="@+id/group_channels_count"
+                android:id="@+id/group_members_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="21 Channels"
+                android:text="21 Member"
                 android:textSize="12sp"
                 android:textAlignment="center"
                 android:fontFamily="@font/montserrat_regular"
@@ -118,7 +137,7 @@
                 android:layout_marginBottom="5dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintLeft_toRightOf="@+id/group_members_count"
+                app:layout_constraintLeft_toRightOf="@+id/group_channels_count"
                 app:layout_constraintHorizontal_chainStyle="spread"/>
 
 

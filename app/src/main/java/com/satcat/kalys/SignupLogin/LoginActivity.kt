@@ -111,15 +111,12 @@ class LoginActivity : AppCompatActivity() {
 
                 UserManager.shared.setLocalUser(userSearch.findFirst()!!.ID)
 
-
-
-                //update device token
             }
 
             val intent = Intent(this, StartTabActivity::class.java)
             startActivity(intent)
         } else {
-            //error: show reason on statuslbl
+            //TODO: show reason on statuslbl
             Log.d("problem", reason)
 
             val toast = Toast.makeText(this, "The username & password combination is not valid, try again", Toast.LENGTH_LONG)

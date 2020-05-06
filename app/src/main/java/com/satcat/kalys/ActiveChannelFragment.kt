@@ -1,11 +1,21 @@
 package com.satcat.kalys
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.*
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
+import android.view.*
+import android.view.View.OnFocusChangeListener
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.annotation.RequiresPermission
+import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,6 +30,7 @@ import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
+
 class ActiveChannelFragment : Fragment()
 {
 
@@ -31,7 +42,11 @@ class ActiveChannelFragment : Fragment()
     var channels : List<ChatChannel> = emptyList()
 
     var noticeActive = false
+    var checkedHeight = false
 
+    var defaultMessageBoxHeight = 0
+
+    lateinit var constraintLayout : ConstraintLayout
     lateinit var background : View
 
     lateinit var messageRecyclerView: RecyclerView
@@ -44,23 +59,25 @@ class ActiveChannelFragment : Fragment()
     lateinit var sendBtn : Button
 
     lateinit var switchChannelBtn : Button
+    lateinit var switchRecyclerBg : CardView
     lateinit var hideSwitchChannelBtn : Button
 
 
-    lateinit var noticeContainer : RelativeLayout
+    lateinit var noticeContainer : View
     lateinit var noticeTitle: TextView
     lateinit var noticeText : TextView
     lateinit var noticeTapToEdit : TextView
     lateinit var noticeSenderImg : ImageView
+    lateinit var noticeSenderImgCard : CardView
     lateinit var noticeSenderText : TextView
     lateinit var noticeClose : ImageView
 
+    lateinit var updateNoticeInfoBg : CardView
     lateinit var updateNoticeInfoTxt : TextView
+    lateinit var updateNoticeBg : CardView
     lateinit var updateNoticeTxt : TextView
     lateinit var updateNoticeBtn : Button
     lateinit var updateNoticeCancelBtn : Button
-
-    lateinit var settingsBtn : Button
 
 
     override fun onCreateView(
@@ -70,7 +87,10 @@ class ActiveChannelFragment : Fragment()
     ): View? {
 
         val view: View = inflater!!.inflate(R.layout.fragment_active_channel, container, false)
-        val parent = activity as GroupTabActivity
+
+        setHasOptionsMenu(true)
+
+        constraintLayout = view!!.findViewById(R.id.active_channel_layout)
 
         background = view!!.findViewById(R.id.active_channel_background)
 
@@ -83,6 +103,7 @@ class ActiveChannelFragment : Fragment()
         sendBtn = view!!.findViewById(R.id.active_channel_send_btn)
 
         switchChannelBtn = view!!.findViewById(R.id.active_channel_switch_btn)
+        switchRecyclerBg = view!!.findViewById(R.id.active_channel_switch_recycler_bg)
         hideSwitchChannelBtn = view!!.findViewById(R.id.active_channel_hide_switch)
 
         noticeContainer = view!!.findViewById(R.id.active_channel_notice_background)
@@ -90,22 +111,67 @@ class ActiveChannelFragment : Fragment()
         noticeText = view!!.findViewById(R.id.active_channel_notice)
         noticeTapToEdit = view!!.findViewById(R.id.active_channel_notice_tap_to_edit)
         noticeSenderImg = view!!.findViewById(R.id.active_channel_notice_sender_img)
+        noticeSenderImgCard = view!!.findViewById(R.id.active_channel_notice_sender_img_card)
         noticeSenderText = view!!.findViewById(R.id.active_channel_notice_sender)
         noticeClose = view!!.findViewById(R.id.active_channel_close_img)
 
-        updateNoticeInfoTxt = view!!.findViewById(R.id.active_channel_update_notice_info)
-        updateNoticeTxt = view!!.findViewById(R.id.active_channel_update_notice_field)
-        updateNoticeBtn = view!!.findViewById(R.id.active_channel_update_btn)
-        updateNoticeCancelBtn = view!!.findViewById(R.id.active_channel_update_cancel_btn)
+        updateNoticeInfoBg = view!!.findViewById(R.id.active_channel_edit_notice_info_bg)
+        updateNoticeInfoTxt = view!!.findViewById(R.id.active_channel_edit_notice_info)
+        updateNoticeBg = view!!.findViewById(R.id.active_channel_edit_notice_field_bg)
+        updateNoticeTxt = view!!.findViewById(R.id.active_channel_edit_notice_field)
+        updateNoticeBtn = view!!.findViewById(R.id.active_channel_edit_notice_update_btn)
+        updateNoticeCancelBtn = view!!.findViewById(R.id.active_channel_edit_notice_cancel_btn)
 
-        settingsBtn = view.findViewById(R.id.active_channel_settings_btn)
+        defaultMessageBoxHeight = messageTxt.lineHeight
 
-        settingsBtn.setOnClickListener {
-            val intent = Intent(activity, OptionsChannelActivity::class.java)
-            intent.putExtra("groupID", parent.activeGroup.ID)
-            intent.putExtra("channelID", parent.activeChannel.ID)
-            startActivity(intent)
-        }
+        messageTxt.setOnFocusChangeListener(OnFocusChangeListener { v, hasFocus ->
+            if (hasFocus) { //got focus
+            } else { //lost focus
+                Log.d("myTag", "LOST FOCUS");
+            }
+        })
+
+        messageTxt.addTextChangedListener(object : TextWatcher {
+
+
+            override fun afterTextChanged(s: Editable) {}
+
+            override fun beforeTextChanged(s: CharSequence, start: Int,
+                                           count: Int, after: Int) {
+                if(!checkedHeight) {
+                    defaultMessageBoxHeight = messageTxt.height
+                    checkedHeight = true
+                }
+
+            }
+
+            override fun onTextChanged(s: CharSequence, start: Int,
+                                       before: Int, count: Int) {
+
+
+                if(messageTxt.text.isNotBlank()) {
+                    sendButtonVisible(true)
+
+                    messageRecyclerView.setPadding(messageRecyclerView.paddingLeft, messageRecyclerView.paddingTop, messageRecyclerView.paddingRight, messageTxt.height - defaultMessageBoxHeight)
+
+                    val constraintSet = ConstraintSet()
+                    constraintSet.clone(constraintLayout)
+                    constraintSet.connect(R.id.recycler_messages, ConstraintSet.BOTTOM, R.id.active_channel_send_btn, ConstraintSet.TOP, 0)
+                    constraintSet.connect(R.id.active_channel_message_field, ConstraintSet.RIGHT, R.id.active_channel_send_btn, ConstraintSet.LEFT, 0)
+                    constraintSet.applyTo(constraintLayout)
+                } else {
+                    sendButtonVisible(false)
+
+                    val constraintSet = ConstraintSet()
+                    constraintSet.clone(constraintLayout)
+                    constraintSet.connect(R.id.recycler_messages, ConstraintSet.BOTTOM, R.id.active_channel_switch_btn, ConstraintSet.TOP, 0)
+                    constraintSet.connect(R.id.active_channel_message_field, ConstraintSet.RIGHT, R.id.active_channel_switch_btn, ConstraintSet.LEFT, 0)
+                    constraintSet.applyTo(constraintLayout)
+                }
+
+
+            }
+        })
 
         openNotice.setOnClickListener {
             openNotice()
@@ -119,7 +185,6 @@ class ActiveChannelFragment : Fragment()
         noticeClose.setOnClickListener {
             closeNotice()
         }
-
 
         noticeText.setOnClickListener {
             updateNoticeVisible(true)
@@ -158,9 +223,6 @@ class ActiveChannelFragment : Fragment()
 
         setupNoticeText()
 
-        realm.executeTransaction {
-            parent.activeChannel.NotificationCount = 0
-        }
 
         messages = parent.activeChannel.Messages
         channels = realm.where<ChatChannel>().equalTo("IsMember", true).equalTo("GroupID", parent.activeGroup.ID ).findAll().toList()
@@ -197,6 +259,35 @@ class ActiveChannelFragment : Fragment()
 
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.channel_settings_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+        val parent = activity as GroupTabActivity
+
+        if(id == R.id.menu_channel_settings_btn) {
+            val intent = Intent(activity, OptionsChannelActivity::class.java)
+            intent.putExtra("groupID", parent.activeGroup.ID)
+            intent.putExtra("channelID", parent.activeChannel.ID)
+            startActivity(intent)
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+
+        if(newConfig.keyboardHidden == Configuration.HARDKEYBOARDHIDDEN_NO) {
+
+        } else if (newConfig.keyboardHidden == Configuration.HARDKEYBOARDHIDDEN_YES) {
+            messageRecyclerView.setPadding(messageRecyclerView.paddingLeft, messageRecyclerView.paddingTop, messageRecyclerView.paddingRight, 0)
+        }
+    }
+
+
     private fun initRecyclerView(recycler : RecyclerView) {
         recycler.apply {
             layoutManager = LinearLayoutManager(activity)
@@ -225,6 +316,8 @@ class ActiveChannelFragment : Fragment()
         noticeText.text = if(parent.activeChannel.Notice != "") parent.activeChannel.Notice else "Notice"
         noticeSenderText.text = parent.activeChannel.NoticeSender!!.FirstName
 
+        noticeSenderImg.setImageBitmap(parent.activeChannel.NoticeSender!!.getImage())
+
         updateNoticeInfoTxt.text = "Update the notice for " + parent.activeChannel.Title
         updateNoticeTxt.text = parent.activeChannel.Notice
 
@@ -238,10 +331,7 @@ class ActiveChannelFragment : Fragment()
         val realm = Realm.getDefaultInstance()
 
 
-        noticeContainer.isVisible = true
         noticeActive = true
-
-        newNoticeTxt.isVisible = false
 
         if(parent.activeChannel.ReceivedNotice) {
             realm.executeTransaction {
@@ -253,26 +343,52 @@ class ActiveChannelFragment : Fragment()
             switchChannelAdapter.notifyDataSetChanged()
 
         }
+
+        noticeVisible(true)
     }
 
     fun closeNotice() {
-        noticeContainer.isVisible = false
         noticeActive = false
+
+        noticeVisible(false)
     }
 
-    fun updateNoticeVisible(visibile : Boolean) {
-        background.isVisible = visibile
-        updateNoticeInfoTxt.isVisible = visibile
-        updateNoticeTxt.isVisible = visibile
-        updateNoticeBtn.isVisible = visibile
-        updateNoticeCancelBtn.isVisible = visibile
+    fun noticeVisible(visible: Boolean) {
+        noticeContainer.isVisible = visible
+        noticeTitle.isVisible = visible
+        noticeText.isVisible = visible
+        noticeTapToEdit.isVisible = visible
+        noticeSenderImg.isVisible = visible
+        noticeSenderImgCard.isVisible = visible
+        noticeSenderText.isVisible = visible
+        noticeClose.isVisible = visible
+
+        openNotice.isVisible = !visible
 
     }
 
-    fun switchChannelVisible(visibile: Boolean) {
-        background.isVisible = visibile
-        switchChannelRecyclerView.isVisible = visibile
-        hideSwitchChannelBtn.isVisible = visibile
+    fun updateNoticeVisible(visible : Boolean) {
+        background.isVisible = visible
+        updateNoticeInfoBg.isVisible = visible
+        updateNoticeInfoTxt.isVisible = visible
+        updateNoticeBg.isVisible = visible
+        updateNoticeTxt.isVisible = visible
+        updateNoticeBtn.isVisible = visible
+        updateNoticeCancelBtn.isVisible = visible
+
+    }
+
+    fun switchChannelVisible(visible: Boolean) {
+        background.isVisible = visible
+        switchChannelRecyclerView.isVisible = visible
+        switchRecyclerBg.isVisible = visible
+        hideSwitchChannelBtn.isVisible = visible
+    }
+
+    fun sendButtonVisible(visible: Boolean) {
+        sendBtn.isVisible = visible
+        switchChannelBtn.isVisible = !visible
+
     }
 
     fun createMessage() {

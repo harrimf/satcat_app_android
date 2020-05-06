@@ -22,6 +22,31 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
+    <TextView
+        android:id="@+id/start_tab_explain_lbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Join an existing group or create a new one below"
+        android:textAlignment="center"
+        android:fontFamily="@font/montserrat_bold"
+        android:textColor="@color/placeholderGray"
+        android:textSize="16sp"
+        android:alpha="0.22"
+        app:layout_constraintTop_toBottomOf="@id/guideline_start_tab"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        android:layout_marginTop="5dp"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_start_tab"
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.5"
+        android:layout_marginBottom="70dp"/>
+
     <View
         android:id="@+id/nav_divider"
         android:layout_width="match_parent"

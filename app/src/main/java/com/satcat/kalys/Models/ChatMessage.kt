@@ -1,5 +1,10 @@
 package com.satcat.kalys.Models
 
+import android.R
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import com.satcat.kalys.KalysApplication
+import com.satcat.kalys.Managers.ImageStorageManager
 import io.realm.Realm
 import io.realm.RealmObject
 import io.realm.RealmResults
@@ -25,12 +30,15 @@ open class ChatMessage(
 
     fun giveJson(): JSONObject {
 
+        val imageString = if(ImageStorageManager.shared.convertBitmapToString(getImage()) != ImageStorageManager.shared.convertBitmapToString(BitmapFactory.decodeResource(
+                KalysApplication.getContext().resources, R.drawable.ic_dialog_email))) ImageStorageManager.shared.convertBitmapToString(getImage()) else ""
+
         val messageJson = JSONObject()
         messageJson.put("ID", ID)
         messageJson.put("Text", Text)
         messageJson.put("Sender", Sender?.giveJson())
         messageJson.put("ChannelID", ChannelID)
-        messageJson.put("Image", "") // get image from imagepath
+        messageJson.put("Image", imageString) // get image from imagepath
 
         return messageJson
     }
@@ -41,6 +49,10 @@ open class ChatMessage(
         this.ChannelID = obj.getString("ChannelID")
         //attachChannel()
 
+    }
+
+    fun getImage(): Bitmap {
+        return ImageStorageManager.shared.getImage(this.ImagePath)!!
     }
 
 //    fun attachChannel() {

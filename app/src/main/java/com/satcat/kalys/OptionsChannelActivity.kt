@@ -6,6 +6,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,14 +20,13 @@ import kotlinx.android.synthetic.main.activity_options_channel.*
 
 class OptionsChannelActivity : AppCompatActivity() {
 
-    lateinit var  activeGroup : ChatGroup
+    lateinit var activeGroup : ChatGroup
     lateinit var activeChannel : ChatChannel
 
 
     lateinit var membersAdapter : RecyclerAdapter
 
-
-    lateinit var titleContainer : RelativeLayout
+    lateinit var titleContainer : View
 
     lateinit var visibilitySwitch : Switch
     lateinit var visibilityDetails : TextView
@@ -34,21 +34,22 @@ class OptionsChannelActivity : AppCompatActivity() {
 
     lateinit var background : View
 
+    lateinit var membersInfoBg : CardView
     lateinit var membersInfo : TextView
+    lateinit var membersRecyclerBg : CardView
     lateinit var membersRecycler : RecyclerView
     lateinit var membersExitBtn : Button
 
+
+    lateinit var titleInfoBg : CardView
     lateinit var titleInfo : TextView
+    lateinit var titleFieldbg : CardView
     lateinit var titleField : EditText
     lateinit var titleCancel : Button
     lateinit var titleUpdate : Button
 
     lateinit var titleView : TextView
 
-    lateinit var editTitleInfo : TextView
-    lateinit var editTitleTxt : EditText
-
-    lateinit var viewMembersInfo : TextView
 
     lateinit var addMembersBtn : Button
     lateinit var viewMembersBtn : Button
@@ -58,7 +59,13 @@ class OptionsChannelActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_options_channel)
 
+        supportActionBar!!.title = "Channel Options"
+
+
         titleContainer = options_channel_title_container
+
+        titleView = options_channel_title
+
 
         visibilitySwitch = options_channel_visibility_switch
         visibilityDetails = options_channel_visibility_info
@@ -66,11 +73,15 @@ class OptionsChannelActivity : AppCompatActivity() {
 
         background = options_channel_background
 
+        membersInfoBg = options_channel_view_members_info_bg
+        membersRecyclerBg = options_channel_view_members_recycler_bg
         membersInfo =  options_channel_view_members_info
         membersRecycler = recycler_options_channel_view_members
         membersExitBtn = options_channel_view_members_exit_btn
 
+        titleInfoBg = options_channel_edit_title_info_bg
         titleInfo = options_channel_edit_title_info
+        titleFieldbg = options_channel_edit_title_field_bg
         titleField = options_channel_edit_title_field
         titleCancel = options_channel_edit_title_cancel_btn
         titleUpdate = options_channel_edit_title_update_btn
@@ -119,11 +130,6 @@ class OptionsChannelActivity : AppCompatActivity() {
             titleEditVisible(false)
         }
 
-        visibilitySwitch.setOnCheckedChangeListener { buttonView, isChecked ->
-            updateChannelVisibility()
-            visibilityChangeText(buttonView.isChecked)
-        }
-
 
         initRecyclerView(membersRecycler)
 
@@ -132,12 +138,6 @@ class OptionsChannelActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
-        titleView = options_channel_title
-
-        editTitleInfo = options_channel_edit_title_info
-        editTitleTxt = options_channel_edit_title_field
-
-        viewMembersInfo = options_channel_view_members_info
 
         val realm : Realm = Realm.getDefaultInstance()
         activeGroup = realm.where<ChatGroup>().equalTo("ID", intent.getStringExtra("groupID")).findFirst()!!
@@ -146,16 +146,20 @@ class OptionsChannelActivity : AppCompatActivity() {
 
         titleView.text = activeChannel.Title
 
+        visibilitySwitch.isChecked = !activeChannel.IsPrivate
         visibilityChangeText(!activeChannel.IsPrivate)
 
-        editTitleInfo.text = "Update the title of " + activeChannel.Title
-        editTitleTxt.hint = activeChannel.Title
-        viewMembersInfo.text = activeChannel.Title + " Members"
-
-        if(activeChannel.IsMain) {
-            visibilitySwitch.isEnabled = false
+        visibilitySwitch.setOnCheckedChangeListener { buttonView, isChecked ->
+            updateChannelVisibility()
+            visibilityChangeText(isChecked)
         }
 
+
+        titleInfo.text = "Update the title of " + activeChannel.Title
+        titleField.hint = activeChannel.Title
+        membersInfo.text = activeChannel.Title + " Members"
+
+        visibilitySwitch.isVisible = !activeChannel.IsMain
 
         val list  = activeChannel.Members
 
@@ -164,17 +168,22 @@ class OptionsChannelActivity : AppCompatActivity() {
 
     }
 
+    override fun onStop() {
+        visibilitySwitch.setOnCheckedChangeListener(null)
+        super.onStop()
+    }
+
     fun updateTitle() {
         val realm : Realm = Realm.getDefaultInstance()
 
         realm.executeTransaction {
-            activeChannel.Title = editTitleTxt.text.toString()
+            activeChannel.Title = titleField.text.toString()
         }
 
         titleView.text = activeChannel.Title
-        editTitleInfo.text = "Update the title of " + activeChannel.Title
-        editTitleTxt.hint = activeChannel.Title
-        viewMembersInfo.text = activeChannel.Title + " Members"
+        titleInfo.text = "Update the title of " + activeChannel.Title
+        titleField.hint = activeChannel.Title
+        membersInfo.text = activeChannel.Title + " Members"
 
         if(SocketIOManager.shared.socketConnected()) {
             SocketIOManager.shared.updateChannel(activeChannel.giveJson())
@@ -238,7 +247,9 @@ class OptionsChannelActivity : AppCompatActivity() {
 
     fun titleEditVisible(visible: Boolean) {
         background.isVisible = visible
+        titleInfoBg.isVisible = visible
         titleInfo.isVisible = visible
+        titleFieldbg.isVisible = visible
         titleField.isVisible = visible
         titleCancel.isVisible = visible
         titleUpdate.isVisible = visible
@@ -247,8 +258,10 @@ class OptionsChannelActivity : AppCompatActivity() {
 
     fun viewMembersVisible(visible: Boolean) {
         background.isVisible = visible
+        membersInfoBg.isVisible = visible
         membersInfo.isVisible = visible
         membersRecycler.isVisible = visible
+        membersRecyclerBg.isVisible = visible
         membersExitBtn.isVisible = visible
     }
 
@@ -256,9 +269,11 @@ class OptionsChannelActivity : AppCompatActivity() {
         if(public) {
             visibilityStatus.text = "Public"
             visibilityDetails.text = "Channel Visibility • Everyone"
+
         } else {
             visibilityStatus.text = "Private"
             visibilityDetails.text = "Channel Visibility • Channel Members"
+
         }
     }
 

@@ -1,14 +1,24 @@
 package com.satcat.kalys
 
+import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.ImageDecoder
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
+import androidx.core.graphics.drawable.toBitmap
 import androidx.core.view.isVisible
+import com.satcat.kalys.Managers.ImageStorageManager
 import com.satcat.kalys.Managers.SocketIOManager
 import com.satcat.kalys.Managers.UserManager
+import com.satcat.kalys.SignupLogin.SignupImageActivity
 import com.satcat.kalys.SignupLogin.WelcomeActivity
 import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_settings.*
@@ -22,13 +32,13 @@ class SettingsActivity : AppCompatActivity() {
 
     lateinit var background : View
     
-    lateinit var usenameContainer : RelativeLayout 
-    lateinit var firstnameContainer : RelativeLayout
-    lateinit var lastnameContainer : RelativeLayout
-    lateinit var emailContainer : RelativeLayout
-    lateinit var phonenumberContainer : RelativeLayout
-    lateinit var imageContainer : RelativeLayout
-    lateinit var passwordContainer : RelativeLayout
+    lateinit var usenameContainer : View 
+    lateinit var firstnameContainer : View
+    lateinit var lastnameContainer : View
+    lateinit var emailContainer : View
+    lateinit var phonenumberContainer : View
+    lateinit var imageContainer : View
+    lateinit var passwordContainer : View
     
     
     lateinit var usernameTxt : TextView
@@ -39,41 +49,57 @@ class SettingsActivity : AppCompatActivity() {
     lateinit var imageTxt : TextView
     lateinit var passwordTxt : TextView
     
-    lateinit var imageBtn : ImageButton
-    
+    lateinit var imagePreview : ImageView
+    lateinit var imagePreviewCard: CardView
+
+    lateinit var editUserNameInfoBg : CardView
+    lateinit var editUserNameBg : CardView
     lateinit var editUsernameInfo : TextView
     lateinit var editUsernameTxt : EditText
     lateinit var editUsernameCancelBtn : Button
     lateinit var editUsernameUpdateBtn : Button
 
 
+    lateinit var editFirstNameInfoBg : CardView
+    lateinit var editFirstNameBg : CardView
     lateinit var editFirstNameInfo : TextView
     lateinit var editFirstNameTxt : EditText
     lateinit var editFirstNameCancelBtn : Button
     lateinit var editFirstNameUpdateBtn : Button
 
+    lateinit var editLastNameInfoBg : CardView
+    lateinit var editLastNameBg : CardView
     lateinit var editLastNameInfo : TextView
     lateinit var editLastNameTxt : EditText
     lateinit var editLastNameCancelBtn : Button
     lateinit var editLastNameUpdateBtn : Button
 
+    lateinit var editEmailInfoBg : CardView
+    lateinit var editEmailBg : CardView
     lateinit var editEmailInfo : TextView
     lateinit var editEmailTxt : EditText
     lateinit var editEmailCancelBtn : Button
     lateinit var editEmailUpdateBtn : Button
 
+    lateinit var editPhonenumberInfoBg : CardView
+    lateinit var editPhonenumberBg : CardView
     lateinit var editPhonenumberInfo : TextView
     lateinit var editPhonenumberTxt : EditText
     lateinit var editPhonenumberCancelBtn : Button
     lateinit var editPhonenumberUpdateBtn : Button
 
     lateinit var editImageInfo: TextView
-    lateinit var editImage : ImageButton
+    lateinit var editImage : ImageView
+    lateinit var editImageCard : CardView
     lateinit var editImageTapToEdit : TextView
     lateinit var editImageCancelBtn : Button
     lateinit var editImageUpdateBtn : Button
 
 
+    lateinit var editPasswordInfoBg : CardView
+    lateinit var editPasswordOldBg : CardView
+    lateinit var editPasswordNewBg : CardView
+    lateinit var editPasswordConfirmBg : CardView
     lateinit var editPasswordInfo : TextView
     lateinit var editPasswordOldTxt : EditText
     lateinit var editPasswordNewTxt : EditText
@@ -84,9 +110,18 @@ class SettingsActivity : AppCompatActivity() {
     lateinit var  logoutBtn : Button
 
 
+    companion object {
+        private val REQUEST_TAKE_PHOTO = 0
+        private val REQUEST_SELECT_IMAGE_IN_ALBUM = 1
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
+
+        supportActionBar!!.title = "Settings"
+
 
         background = settings_background
 
@@ -107,28 +142,39 @@ class SettingsActivity : AppCompatActivity() {
         imageTxt = settings_image_txt
         passwordTxt = settings_password
 
-        imageBtn = settings_image
+        imagePreview = settings_image
+        imagePreviewCard = settings_image_card
 
+        editUserNameInfoBg = settings_edit_username_info_bg
+        editUserNameBg = settings_edit_username_field_bg
         editUsernameInfo = settings_edit_username_info
         editUsernameTxt = settings_edit_username_field
         editUsernameCancelBtn = settings_edit_username_cancel_btn
         editUsernameUpdateBtn = settings_edit_username_update_btn
 
+        editFirstNameInfoBg = settings_edit_firstname_info_bg
+        editFirstNameBg = settings_edit_firstname_field_bg
         editFirstNameInfo = settings_edit_firstname_info
         editFirstNameTxt = settings_edit_firstname_field
         editFirstNameCancelBtn = settings_edit_firstname_cancel_btn
         editFirstNameUpdateBtn = settings_edit_firstname_update_btn
 
+        editLastNameInfoBg = settings_edit_lastname_info_bg
+        editLastNameBg = settings_edit_lastname_field_bg
         editLastNameInfo = settings_edit_lastname_info
         editLastNameTxt = settings_edit_lastname_field
         editLastNameCancelBtn = settings_edit_lastname_cancel_btn
         editLastNameUpdateBtn = settings_edit_lastname_update_btn
 
+        editEmailInfoBg = settings_edit_email_info_bg
+        editEmailBg = settings_edit_email_field_bg
         editEmailInfo = settings_edit_email_info
         editEmailTxt = settings_edit_email_field
         editEmailCancelBtn = settings_edit_email_cancel_btn
         editEmailUpdateBtn = settings_edit_email_update_btn
 
+        editPhonenumberInfoBg = settings_edit_phonenumber_info_bg
+        editPhonenumberBg = settings_edit_phonenumber_field_bg
         editPhonenumberInfo = settings_edit_phonenumber_info
         editPhonenumberTxt = settings_edit_phonenumber_field
         editPhonenumberCancelBtn = settings_edit_phonenumber_cancel_btn
@@ -136,10 +182,15 @@ class SettingsActivity : AppCompatActivity() {
 
         editImageInfo = settings_edit_image_info
         editImage = settings_edit_image
+        editImageCard = settings_edit_image_card
         editImageTapToEdit = settings_edit_image_tap_to_edit
         editImageCancelBtn = settings_edit_image_cancel_btn
         editImageUpdateBtn = settings_edit_image_update_btn
 
+        editPasswordInfoBg = settings_edit_password_info_bg
+        editPasswordOldBg = settings_edit_password_old_field_bg
+        editPasswordNewBg = settings_edit_password_field_bg
+        editPasswordConfirmBg = settings_edit_password_confirm_field_bg
         editPasswordInfo = settings_edit_password_info
         editPasswordOldTxt = settings_edit_password_old_field
         editPasswordNewTxt = settings_edit_password_field
@@ -148,6 +199,9 @@ class SettingsActivity : AppCompatActivity() {
         editPasswordUpdateBtn = settings_edit_password_update_btn
         
         logoutBtn = settings_logout_btn
+
+        imagePreview.setImageBitmap(UserManager.shared.getUser().getImage())
+        editImage.setImageBitmap(UserManager.shared.getUser().getImage())
 
         realm = Realm.getDefaultInstance()
 
@@ -173,7 +227,6 @@ class SettingsActivity : AppCompatActivity() {
          passwordContainer.setOnClickListener {
              passwordEditVisible(true)
          }
-        
         
 
         editUsernameCancelBtn.setOnClickListener {
@@ -205,8 +258,6 @@ class SettingsActivity : AppCompatActivity() {
         }
 
 
-
-
         editFirstNameUpdateBtn.setOnClickListener {
             updateFirstName()
             firstNameEditVisible(false)
@@ -225,6 +276,21 @@ class SettingsActivity : AppCompatActivity() {
         editPhonenumberUpdateBtn.setOnClickListener {
             updatePhonenumber()
             phonenumberEditVisible(false)
+        }
+
+        editImage.setOnClickListener { buttonView ->
+            val popupMenu = PopupMenu(this,editImage)
+            popupMenu.menuInflater.inflate(R.menu.image_select_menu,popupMenu.menu)
+            popupMenu.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item ->
+                when(item.itemId) {
+                    R.id.gallery_item ->
+                        selectImageInAlbum()
+                    R.id.camera_item ->
+                        takePhoto()
+                }
+                true
+            })
+            popupMenu.show()
         }
 
         editImageUpdateBtn.setOnClickListener {
@@ -280,6 +346,8 @@ class SettingsActivity : AppCompatActivity() {
 
     fun usernameEditVisible(visible: Boolean) {
         background.isVisible = visible
+        editUserNameInfoBg.isVisible = visible
+        editUserNameBg.isVisible = visible
         editUsernameInfo.isVisible = visible
         editUsernameTxt.isVisible = visible
         editUsernameCancelBtn.isVisible = visible
@@ -288,6 +356,8 @@ class SettingsActivity : AppCompatActivity() {
 
     fun firstNameEditVisible(visible: Boolean) {
         background.isVisible = visible
+        editFirstNameInfoBg.isVisible = visible
+        editFirstNameBg.isVisible = visible
         editFirstNameInfo.isVisible = visible
         editFirstNameTxt.isVisible = visible
         editFirstNameCancelBtn.isVisible = visible
@@ -297,6 +367,8 @@ class SettingsActivity : AppCompatActivity() {
 
     fun lastNameEditVisible(visible: Boolean) {
         background.isVisible = visible
+        editLastNameInfoBg.isVisible = visible
+        editLastNameBg.isVisible = visible
         editLastNameInfo.isVisible = visible
         editLastNameTxt.isVisible = visible
         editLastNameCancelBtn.isVisible = visible
@@ -305,6 +377,8 @@ class SettingsActivity : AppCompatActivity() {
 
     fun emailEditVisible(visible: Boolean) {
         background.isVisible = visible
+        editEmailInfoBg.isVisible = visible
+        editEmailBg.isVisible = visible
         editEmailInfo.isVisible = visible
         editEmailTxt.isVisible = visible
         editEmailCancelBtn.isVisible = visible
@@ -313,6 +387,8 @@ class SettingsActivity : AppCompatActivity() {
 
     fun phonenumberEditVisible(visible: Boolean) {
         background.isVisible = visible
+        editPhonenumberInfoBg.isVisible = visible
+        editPhonenumberBg.isVisible = visible
         editPhonenumberInfo.isVisible = visible
         editPhonenumberTxt.isVisible = visible
         editPhonenumberCancelBtn.isVisible = visible
@@ -323,6 +399,7 @@ class SettingsActivity : AppCompatActivity() {
         background.isVisible = visible
         editImageInfo.isVisible = visible
         editImage.isVisible = visible
+        editImageCard.isVisible = visible
         editImageTapToEdit.isVisible = visible
         editImageCancelBtn.isVisible = visible
         editImageUpdateBtn.isVisible = visible
@@ -330,6 +407,10 @@ class SettingsActivity : AppCompatActivity() {
 
     fun passwordEditVisible(visible: Boolean) {
         background.isVisible = visible
+        editPasswordInfoBg.isVisible = visible
+        editPasswordOldBg.isVisible = visible
+        editPasswordNewBg.isVisible = visible
+        editPasswordConfirmBg.isVisible = visible
         editPasswordInfo.isVisible = visible
         editPasswordOldTxt.isVisible = visible
         editPasswordNewTxt.isVisible = visible
@@ -386,8 +467,22 @@ class SettingsActivity : AppCompatActivity() {
     }
     
     fun updateImage() {
-        //TODO: implement updating image
-        
+        val realm : Realm = Realm.getDefaultInstance()
+
+        val user = UserManager.shared.getUser()
+
+        val imageName = user.ID + "_main.png"
+
+        ImageStorageManager.shared.saveToInternalStorage(editImage.drawable.toBitmap(), imageName)
+
+
+        realm.executeTransaction {
+            UserManager.shared.getUser().ImagePath = imageName
+        }
+
+        imagePreview.setImageBitmap(editImage.drawable.toBitmap())
+
+        socketUserUpdate()
     }
     
     fun updatePassword() {
@@ -436,6 +531,48 @@ class SettingsActivity : AppCompatActivity() {
         } else {
             realm.executeTransaction {
                 UserManager.shared.getUser().Updated = false
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_SELECT_IMAGE_IN_ALBUM) {
+
+            val imageUri: Uri? = data?.data
+
+            if(Build.VERSION.SDK_INT < 28) {
+                val bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, imageUri)
+                val scaleBitmap =  ImageStorageManager.shared.resizeBitmap(bitmap, editImage.width, editImage.height)
+                editImage.setImageBitmap(scaleBitmap)
+            } else {
+                val source = ImageDecoder.createSource(this.contentResolver, imageUri!!)
+                val bitmap = ImageDecoder.decodeBitmap(source)
+                val scaleBitmap =  ImageStorageManager.shared.resizeBitmap(bitmap, editImage.width, editImage.height)
+                editImage.setImageBitmap(scaleBitmap)
+            }
+
+        } else if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_TAKE_PHOTO) {
+            val imageBitmap = data?.extras?.get("data") as Bitmap
+            val scaleBitmap = ImageStorageManager.shared.resizeBitmap(imageBitmap, editImage.width, editImage.height)
+            editImage.setImageBitmap(scaleBitmap)
+        }
+
+    }
+
+    private fun selectImageInAlbum() {
+        val intent = Intent(Intent.ACTION_GET_CONTENT)
+        intent.type = "image/*"
+        if (intent.resolveActivity(packageManager) != null) {
+            startActivityForResult(intent, REQUEST_SELECT_IMAGE_IN_ALBUM)
+        }
+    }
+
+    private fun takePhoto() {
+        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
+            takePictureIntent.resolveActivity(packageManager)?.also {
+                startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO)
             }
         }
     }

@@ -32,6 +32,9 @@ class JoinGroupActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_join_group)
 
+        supportActionBar!!.title = "Join Group"
+
+
         realm = Realm.getDefaultInstance()
 
         val context = this.applicationContext

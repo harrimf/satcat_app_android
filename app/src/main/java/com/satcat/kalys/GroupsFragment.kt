@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,8 +23,9 @@ import org.greenrobot.eventbus.ThreadMode
 class GroupsFragment : Fragment()
 {
     private lateinit var groupsAdapter : RecyclerAdapter
+    private lateinit var explainLbl : TextView
 
-    var groups: List<ChatGroup> = emptyList()  //TODO: fix problem of List/Array/ArrayList proper choice
+    var groups: List<ChatGroup> = emptyList()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,8 +35,11 @@ class GroupsFragment : Fragment()
 
         val view: View = inflater!!.inflate(R.layout.fragment_groups, container, false)
 
+        explainLbl = view!!.findViewById(R.id.groups_explain_lbl)
+
         val recycler : RecyclerView = view!!.findViewById(R.id.recycler_groups)
         initRecyclerView(recycler)
+
 
         return view
 
@@ -64,6 +70,13 @@ class GroupsFragment : Fragment()
         groups = realm.where<ChatGroup>().equalTo("Removable", true).findAll().toList()
         groupsAdapter.submitList(groups)
         groupsAdapter.notifyDataSetChanged()
+
+        if(groups.count() > 0) {
+            explainLbl.isVisible = false
+            val parent = activity as StartTabActivity
+            parent.startTabText.isVisible = false
+
+        }
 
     }
 

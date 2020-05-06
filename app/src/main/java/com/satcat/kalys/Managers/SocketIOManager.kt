@@ -153,9 +153,9 @@ open class SocketIOManager {
                         checkGroup.Channels.first()!!.Title = obj.getString("Title") + " Channel"
                     }
 
-                    val base64String = Base64.decode(obj.getString("Image"), Base64.DEFAULT )
+                    val imageManager = ImageStorageManager.shared
 
-                    if(false/*TODO: checkGroup.getImage() != BitmapFactory.decodeByteArray(base64String, 0, base64String.count()) */) { //convert to Base64 String
+                    if(imageManager.convertBitmapToString(imageManager.getImage(checkGroup.ImagePath)!!) != obj.getString("Image")) { //convert to Base64 String
                         val imageName = obj.getString("ID") + "_main.png"
                         val imageData = obj.getString("Image")
 
@@ -225,10 +225,9 @@ open class SocketIOManager {
 
                         }
 
-                        val base64String = Base64.decode(jsonMember.getString("Image"), Base64.DEFAULT )
+                        val imageManager = ImageStorageManager.shared
 
-                        //Update Image if necessary
-                        if(false/*TODO: searchMember.getImage() != BitmapFactory.decodeByteArray(base64String, 0, base64String.count())*/ ) { //convert to Base64 String
+                        if(imageManager.convertBitmapToString(imageManager.getImage(searchMember.ImagePath)!!) != jsonMember.getString("Image")) { //convert to Base64 String
                             val imageName = jsonMember.getString("ID") + "_main.png"
                             val imageData = jsonMember.getString("Image")
 
@@ -356,10 +355,9 @@ open class SocketIOManager {
 
                     if(searchMember != null) {
 
-                        val base64String = Base64.decode(jsonMember.getString("Image"), Base64.DEFAULT )
+                        val imageManager = ImageStorageManager.shared
 
-                        //Update Image if necessary
-                        if(false/* TODO: searchMember.getImage() != BitmapFactory.decodeByteArray(base64String, 0, base64String.count()) */) { //convert to Base64 String
+                        if(imageManager.convertBitmapToString(imageManager.getImage(searchMember.ImagePath)!!) != jsonMember.getString("Image")) { //convert to Base64 String
                             val imageName = jsonMember.getString("ID") + "_main.png"
                             val imageData = jsonMember.getString("Image")
 
@@ -527,9 +525,9 @@ open class SocketIOManager {
                         }
 
 
-                        val base64String = Base64.decode(jsonMember.getString("Image"), Base64.DEFAULT )
+                        val imageManager = ImageStorageManager.shared
 
-                        if(false/*TODO: searchMember.getImage() != BitmapFactory.decodeByteArray(base64String, 0, base64String.count())*/) {
+                        if(imageManager.convertBitmapToString(imageManager.getImage(searchMember.ImagePath)!!) != jsonMember.getString("Image")) { //convert to Base64 String
                             val imageName = jsonMember.getString("ID") + "_main.png"
                             val imageData = jsonMember.getString("Image")
 
@@ -548,9 +546,9 @@ open class SocketIOManager {
 
                     if(searchMember != null) {
 
-                        val base64String = Base64.decode(jsonMember.getString("Image"), Base64.DEFAULT )
+                        val imageManager = ImageStorageManager.shared
 
-                        if(false/*TODO: searchMember.getImage() != BitmapFactory.decodeByteArray(base64String, 0, base64String.count())*/) {
+                        if(imageManager.convertBitmapToString(imageManager.getImage(searchMember.ImagePath)!!) != jsonMember.getString("Image")) { //convert to Base64 String
                             val imageName = jsonMember.getString("ID") + "_main.png"
                             val imageData = jsonMember.getString("Image")
 
@@ -802,7 +800,7 @@ open class SocketIOManager {
     }
 
     fun saveImageFromString(base64String: String, name: String) {
-
+        ImageStorageManager.shared.saveToInternalStorage(ImageStorageManager.shared.convertStringToBitmap(base64String), name)
     }
 
     fun socketConnected(): Boolean {

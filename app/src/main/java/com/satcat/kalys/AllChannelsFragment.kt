@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,10 +22,11 @@ import org.greenrobot.eventbus.ThreadMode
 class AllChannelsFragment : Fragment()
 {
     private lateinit var channelsAdapter : HeaderAdapter
-//
-//    var groups: List<ChatGroup> = emptyList()
-//
-//    var memberChannels : ArrayList<ArrayList<ChatChannel>> = ArrayList()
+
+    private lateinit var explainLbl : TextView
+
+    var channels: ArrayList<RecyclerChannel> = ArrayList()
+
 
 
     override fun onCreateView(
@@ -34,7 +37,10 @@ class AllChannelsFragment : Fragment()
 
         val view: View = inflater!!.inflate(R.layout.fragment_all_channels, container, false)
 
-        //return inflater.inflate(R.layout.fragment_groups, container, false)
+        explainLbl = view!!.findViewById(R.id.all_channels_explain_lbl)
+
+        channels = recyclerList()
+
 
         initRecyclerView(view!!.findViewById(R.id.recycler_channels))
 
@@ -52,11 +58,9 @@ class AllChannelsFragment : Fragment()
 
     private fun initRecyclerView(recycler : RecyclerView) {
 
-
-
         recycler.apply {
             layoutManager = LinearLayoutManager(activity)
-            channelsAdapter = HeaderAdapter(HeaderAdapter.HeaderRecyclerType.ALLCHANNELS, recyclerList())
+            channelsAdapter = HeaderAdapter(HeaderAdapter.HeaderRecyclerType.ALLCHANNELS, channels)
             adapter = channelsAdapter
         }
 
@@ -103,25 +107,16 @@ class AllChannelsFragment : Fragment()
     }
 
     fun handleReceive() {
-
-//        groups = realm.where<ChatGroup>().equalTo("Removable", true).findAll().toList()
-//
-//        var fillGroupChannels : ArrayList<ArrayList<ChatChannel>> = ArrayList()
-//
-//        for(group in groups) {
-//            var groupChannels : ArrayList<ChatChannel> = ArrayList()
-//
-//            for(channel in group.Channels) {
-//                if(channel.IsMember) {
-//                    groupChannels.add(channel)
-//                }
-//            }
-//            fillGroupChannels.add(groupChannels)
-//        }
-//        memberChannels = fillGroupChannels
-
-        channelsAdapter.submitList(recyclerList()) //TODO: Handle 2 lists for recycler
+        channels = recyclerList()
+        channelsAdapter.submitList(channels)
         channelsAdapter.notifyDataSetChanged()
+
+        if(channels.count() > 0) {
+            explainLbl.isVisible = false
+            val parent = activity as StartTabActivity
+            parent.startTabText.isVisible = false
+
+        }
 
     }
 

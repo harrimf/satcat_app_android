@@ -53,6 +53,9 @@ class AddMembersActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_members)
 
+        supportActionBar!!.title = "Add Members"
+
+
         realm = Realm.getDefaultInstance()
 
 //        searchGroupOnly = intent.getBooleanExtra("searchGroupOnly", false)

@@ -25,9 +25,14 @@ public class KalysApplication extends Application implements LifecycleObserver {
 
     public static boolean IS_APP_IN_FOREGROUND = false;
 
+    private static KalysApplication mContext;
+
     @Override
     public void onCreate() {
         super.onCreate();
+
+        mContext = this;
+
         Realm.init(this);
         FirebaseApp.initializeApp(this);
 
@@ -65,6 +70,11 @@ public class KalysApplication extends Application implements LifecycleObserver {
                         Log.d("successToken", token);
                     }
                 });
+    }
+
+
+    public static KalysApplication getContext() {
+        return mContext;
     }
 
 

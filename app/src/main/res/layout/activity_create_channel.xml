@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,112 +7,214 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/create_channel_header_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="The new channel will be added to..."
+        android:fontFamily="@font/montserrat_regular"
+        android:textColor="@color/placeholderGray"
+        android:alpha="0.22"
+        android:textSize="14sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"/>
 
     <EditText
+        android:id="@+id/create_channel_name_field"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Channel Name"
-        android:layout_marginTop="50dp"
-        android:id="@+id/create_channel_name_field"/>
+        android:textSize="16sp"
+        android:textColor="@color/textGray"
+        android:background="@android:color/transparent"
+        android:fontFamily="@font/montserrat_medium"
+        app:layout_constraintTop_toBottomOf="@id/create_channel_header_info"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        />
 
     <TextView
         android:id="@+id/create_channel_name_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Give your channel a name"
-        android:fontFamily="sans-serif"
-        android:layout_marginTop="90dp"
-        android:textSize="12sp"/>
+        android:fontFamily="@font/montserrat_regular"
+        android:textColor="@color/placeholderGray"
+        android:alpha="0.22"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@+id/create_channel_name_field"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"/>
 
     <EditText
+        android:id="@+id/create_channel_notice_field"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Channel Notice (Optional)"
-        android:layout_marginTop="110dp"
-        android:id="@+id/create_channel_notice_field"/>
+        android:textSize="16sp"
+        android:textColor="@color/textGray"
+        android:background="@android:color/transparent"
+        android:fontFamily="@font/montserrat_medium"
+        app:layout_constraintTop_toBottomOf="@id/create_channel_name_info"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        />
 
     <TextView
         android:id="@+id/create_channel_notice_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add a notice that will be visible to all members of the channel"
-        android:fontFamily="sans-serif"
-        android:layout_marginTop="155dp"
-        android:textSize="12sp"/>
+        android:fontFamily="@font/montserrat_regular"
+        android:textColor="@color/placeholderGray"
+        android:alpha="0.22"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@+id/create_channel_notice_field"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"/>
 
-    <Switch
-        android:id="@+id/create_channel_visibility_switch"
-        android:layout_width="50dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="255dp"
-        android:layout_alignParentRight="true"
-        android:checked="true"
-        />
 
     <TextView
         android:id="@+id/create_channel_visibility_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Public"
-        android:fontFamily="sans-serif"
-        android:layout_marginTop="255dp"
-        android:textSize="14sp"/>
+        android:textSize="16sp"
+        android:textColor="@color/textGray"
+        android:background="@android:color/transparent"
+        android:fontFamily="@font/montserrat_medium"
+        app:layout_constraintTop_toBottomOf="@id/create_channel_notice_info"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"/>
 
     <TextView
         android:id="@+id/create_channel_visibility_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Channel Visibility • Everyone"
-        android:fontFamily="sans-serif"
-        android:layout_marginTop="275dp"
-        android:textSize="12sp"/>
+        android:fontFamily="@font/montserrat_regular"
+        android:textColor="@color/placeholderGray"
+        android:alpha="0.22"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@+id/create_channel_visibility_status"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"/>
+
+    <Switch
+        android:id="@+id/create_channel_visibility_switch"
+        android:layout_width="50dp"
+        android:layout_height="0dp"
+        android:scaleX="1.25"
+        android:scaleY="1.25"
+        android:checked="true"
+        app:layout_constraintTop_toTopOf="@id/create_channel_visibility_status"
+        app:layout_constraintBottom_toBottomOf="@id/create_channel_visibility_info"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintVertical_chainStyle="spread"
+        android:layout_marginRight="20dp"
+        android:layout_marginEnd="20dp" />
+
+    <Button
+        android:id="@+id/create_channel_add_members_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/add_members_create_group"
+        style="?android:attr/borderlessButtonStyle"
+        app:layout_constraintTop_toBottomOf="@+id/create_channel_visibility_info"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        />
+
 
     <TextView
         android:id="@+id/create_channel_members_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Members • 0"
-        android:fontFamily="sans-serif"
-        android:layout_marginTop="400dp"
-        android:textSize="12sp"/>
+        android:textColor="@color/textGray"
+        android:background="@android:color/transparent"
+        android:fontFamily="@font/montserrat_bold"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@+id/create_channel_add_members_btn"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"/>
+
 
     <TextView
         android:id="@+id/create_channel_members_remove_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Tap user to remove"
-        android:fontFamily="sans-serif"
-        android:visibility="invisible"
-        android:layout_marginTop="420dp"
-        android:textSize="8sp"/>
+        android:textSize="12sp"
+        android:textColor="@color/placeholderGray"
+        android:alpha="0.22"
+        android:background="@android:color/transparent"
+        android:fontFamily="@font/montserrat_regular"
+        app:layout_constraintTop_toBottomOf="@+id/create_channel_members_count"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+
+        />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_marginTop="64dp"
         android:id="@+id/recycler_create_channel_users"
-        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/create_channel_members_remove_text"
+        app:layout_constraintBottom_toTopOf="@+id/create_channel_divider"
+        android:layout_marginTop="5dp"
+
         />
+
+    <View
+        android:id="@+id/create_channel_divider"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/redDivider"
+        android:alpha="0.2"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <Button
         android:id="@+id/create_channel_create_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Create Channel"
-        android:background="#fc241c"
-        android:textColor="#fff"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="16dp"/>
+        android:background="@drawable/create_channel_btn"
+        style="?android:attr/borderlessButtonStyle"
+        app:layout_constraintTop_toTopOf="@+id/create_channel_divider"
+        app:layout_constraintBottom_toBottomOf="@+id/create_channel_divider"
+        app:layout_constraintLeft_toLeftOf="@+id/create_channel_divider"
+        app:layout_constraintRight_toRightOf="@+id/create_channel_divider"
+        app:layout_constraintVertical_chainStyle="spread"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        />
 
-    <Button
-        android:id="@+id/create_channel_add_members_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add Members"
-        android:background="#fc241c"
-        android:textColor="#fff"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_margin="16dp"/>
-</RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
